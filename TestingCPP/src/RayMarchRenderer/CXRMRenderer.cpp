@@ -6,24 +6,6 @@ static const float DEFAULT_FAR_VIEW_DISTANCE = 100.0f;
 
 CXRayMarchInfo CXRMRenderer::RayMarchFromCam(Vec3 rayDirection) const
 {
-	//float distanceFromOriginMarched = .0f;
-
-	//for (size_t i = 0; i < maxMarchingIteration; i++)
-	//{
-	//	Vec3 marchedPoint = _camera.position + rayDir * distanceFromOriginMarched;
-
-	//	float closestSceneDistanceFromMarchPoint = _renderScene.GetClosestDistance(marchedPoint);
-
-	//	//add to the distance from origin marched :>
-	//	distanceFromOriginMarched += closestSceneDistanceFromMarchPoint;
-
-	//	//if marching circle's Radius is smaller than the min surface distance or is larger than the far view distance
-	//	if (distanceFromOriginMarched < minSurfaceDistance ||
-	//		distanceFromOriginMarched > _camera.farViewDistance) break;
-	//}
-
-	//return distanceFromOriginMarched;
-
 	return _renderScene.RayMarch(_camera.position, rayDirection,
 		maxMarchingIteration, minSurfaceDistance, _camera.farViewDistance);
 }
@@ -59,7 +41,7 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 			Vec3 rayDirFromCam = _camera.GetRayDirection(uv_x, uv_y);
 
 			//each pixel (which is UV :D)
-			CXColor finalColor;
+			CXColor finalColor(0, 0, 0);
 
 			CXRayMarchInfo rayMarchInfo = RayMarchFromCam(rayDirFromCam);
 
@@ -67,9 +49,14 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 
 			//Vec3 rayPoint = _camera.position + rayDirFromCam * distance;
 
-			float greyScale = 1.0f - rayMarchInfo.hitDistance / 6.0f;
+			//float greyScale = 1.0f - rayMarchInfo.hitDistance / 6.0f;
 
-			finalColor = CXColor::FromGreyScale(greyScale);
+			if (rayMarchInfo.isHit)
+			{
+				Vec3 normal = rayMarchInfo.renderObject->GetNormal(rayMarchInfo.hitPoint);
+
+				finalColor.SetColor(normal.x, normal.y, normal.z);
+			}
 
 			targetBitmap.SetColor(finalColor, x, y);
 		}

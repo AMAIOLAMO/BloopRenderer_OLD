@@ -3,6 +3,9 @@
 CXRenderObject::CXRenderObject(Vec3 _position) :
 	position(_position) {}
 
+CXRenderObject::CXRenderObject(const CXRenderObject& other) :
+	position(other.position) {}
+
 float CXRenderObject::GetSurfDistance(Vec3 fromPos) const
 {
 	const float SPHERE_SIZE = 1.0f;
@@ -11,7 +14,6 @@ float CXRenderObject::GetSurfDistance(Vec3 fromPos) const
 	return (position - fromPos).GetLength() - SPHERE_SIZE;
 	//return 0.0f;
 }
-
 
 Vec3 CXRenderObject::GetNormal(Vec3 pointOnSurface, float precision) const
 {

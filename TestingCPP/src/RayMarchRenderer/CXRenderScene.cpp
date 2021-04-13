@@ -65,6 +65,7 @@ bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint,
 	if (_rendObjects.size() == 0)
 	{
 		*out_distance = NAN;
+		out_renderObject = nullptr;
 		return false;
 	}
 	if (_rendObjects.size() == 1)
@@ -105,8 +106,8 @@ bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint,
 float CXRenderScene::GetClosestDistance(Vec3 fromPoint) const
 {
 	float outDist;
-	CXRenderObject* renderObj = nullptr;
-	TryGetClosestDistance(fromPoint, &outDist, renderObj);
+	CXRenderObject* renderObj_USELESS = nullptr;
+	TryGetClosestDistance(fromPoint, &outDist, renderObj_USELESS);
 
 	return outDist;
 }

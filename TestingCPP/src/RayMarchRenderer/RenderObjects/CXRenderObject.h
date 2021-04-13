@@ -15,6 +15,11 @@ public:
 	CXRenderObject(Vec3 _position);
 
 	/// <summary>
+	/// Deep copies from another renderer object
+	/// </summary>
+	CXRenderObject(const CXRenderObject& other);
+
+	/// <summary>
 	/// Get's the distance between the target position to the specified from Position
 	/// </summary>
 	virtual float GetSurfDistance(Vec3 fromPos) const;
