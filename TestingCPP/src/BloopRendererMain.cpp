@@ -41,7 +41,7 @@ void DoRenderSimpleScene(const Logger& logger)
 
 	CXRMRenderer renderer(renderScene, camera);
 
-	CXBitMap renderedBitmap(100, 100);
+	CXBitMap renderedBitmap(500, 500);
 
 	renderer.RenderToBitmap(renderedBitmap);
 

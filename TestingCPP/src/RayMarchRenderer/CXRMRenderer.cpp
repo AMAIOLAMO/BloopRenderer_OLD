@@ -45,12 +45,6 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 
 			CXRayMarchInfo rayMarchInfo = RayMarchFromCam(rayDirFromCam);
 
-			//float distance = RayMarchFromCam(rayDirFromCam);
-
-			//Vec3 rayPoint = _camera.position + rayDirFromCam * distance;
-
-			//float greyScale = 1.0f - rayMarchInfo.hitDistance / 6.0f;
-
 			if (rayMarchInfo.isHit)
 			{
 				Vec3 normal = rayMarchInfo.renderObject->GetNormal(rayMarchInfo.hitPoint);
