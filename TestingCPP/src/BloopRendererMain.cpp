@@ -32,8 +32,9 @@ void DoRenderSimpleScene(const Logger& logger)
 	CXRenderScene renderScene;
 	CXCamera camera(Vec3(0, 1, 0), FAR_VIEW_DISTANCE); // we don't care about where it is looking at rn it's fixed :D
 
-	logger.Log(std::to_string(renderScene.GetRendObjects().size()));
+	logger.Log(renderScene.GetRendObjects().size());
 
+	//renderScene.EmplaceAdd(0, 1, 5);
 	renderScene.Add(CXRenderObject(Vec3(0, 1, 5)));
 
 	CXRMRenderer renderer(renderScene, camera);

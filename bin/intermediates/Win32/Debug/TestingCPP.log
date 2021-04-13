@@ -1,5 +1,4 @@
 ﻿  BloopRendererMain.cpp
-  CXRMRenderer.cpp
-  CXRenderScene.cpp
+  Logger.cpp
   正在生成代码...
   TestingCPP.vcxproj -> C:\Users\alienware\source\repos\TestingCPP\bin\Win32\Debug\BloopRenderer.exe

@@ -18,12 +18,20 @@ public:
 	/// <summary>
 	/// Logs a messages to the console
 	/// </summary>
-	void Log(const std::string& message) const;
+	template <typename T>
+	void Log(const T& message) const
+	{
+		std::cout << message << std::endl;
+	}
 
 	/// <summary>
 	/// Logs an error to the console
 	/// </summary>
-	void LogError(const std::string& errorOverview, const std::string& details) const;
+	template <typename T>
+	void LogError(const T& errorOverview, const T& details) const
+	{
+		std::cout << errorOverview << ": " << details << std::endl;
+	}
 
 	/// <summary>
 	/// Changes the Console's Color
@@ -33,7 +41,12 @@ public:
 
 #pragma region Operation overloading
 
-	Logger& operator<<(const std::string& message);
+	template <typename T>
+	const Logger& operator<<(const T& message) const
+	{
+		Log(message);
+		return *this;
+	}
 
 #pragma endregion
 };
