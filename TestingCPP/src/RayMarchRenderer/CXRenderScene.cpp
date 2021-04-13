@@ -17,16 +17,16 @@ CXRenderScene& CXRenderScene::Add(const CXRenderObject& Obj)
 	return *this; //for chaining methods together
 }
 
-bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint, float& out_distance) const
+bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint, float* out_distance) const
 {
 	if (_rendObjects.size() == 0)
 	{
-		out_distance = NAN;
+		*out_distance = NAN;
 		return false;
 	}
 	if (_rendObjects.size() == 1)
 	{
-		out_distance = _rendObjects[0].GetSurfDistance(fromPoint);
+		*out_distance = _rendObjects[0].GetSurfDistance(fromPoint);
 		return true;
 	}
 
@@ -44,7 +44,7 @@ bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint, float& out_distance) c
 			minDist = currentDist;
 	}
 
-	out_distance = minDist;
+	*out_distance = minDist;
 
 	return true;
 }
@@ -52,27 +52,9 @@ bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint, float& out_distance) c
 float CXRenderScene::GetClosestDistance(Vec3 fromPoint) const
 {
 	float outDist;
-	TryGetClosestDistance(fromPoint, outDist);
+	TryGetClosestDistance(fromPoint, &outDist);
 
 	return outDist;
-	//if (_rendObjects.size() == 0) return NAN;
-	//if (_rendObjects.size() == 1) return _rendObjects[0].GetSurfDistance(fromPoint);
-
-	////else there are more than 1 rendering objects :D (at least 2)
-
-	//float minDist = _rendObjects[0].GetSurfDistance(fromPoint);
-
-	////from the second (because we used the first one)
-	//for (int i = 1; i < _rendObjects.size(); i++)
-	//{
-	//	float currentDist = _rendObjects[i].GetSurfDistance(fromPoint);
-
-	//	//if current distance is smaller than the min distance, update :D
-	//	if (minDist > currentDist)
-	//		minDist = currentDist;
-	//}
-
-	//return minDist;
 }
 
 //get's the list of the render objects but promise not to modify it :D

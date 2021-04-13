@@ -36,7 +36,7 @@ public:
 	/// Tries to get the closest distance from a specified from point to the entire scene
 	/// (WILL OPTIMIZE WITH A CHUNK BASED DISTANCE MAP)
 	/// </summary>
-	bool TryGetClosestDistance(Vec3 fromPoint, float& out_distance) const;
+	bool TryGetClosestDistance(Vec3 fromPoint, float* out_distance) const;
 
 	/// <summary>
 	/// Get's the closest distance from the specified from Point to the entire scene
