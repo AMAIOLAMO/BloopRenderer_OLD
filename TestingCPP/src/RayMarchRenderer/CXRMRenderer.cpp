@@ -1,7 +1,7 @@
 #include "CXRMRenderer.h"
 
 CXRMRenderer::CXRMRenderer() :
-	_renderScene(CXRenderScene()), _camera(CXCamera(Vec3(0, 1, 0), Vec3(Vec3::DV::forward))) {}
+	_renderScene(CXRenderScene()), _camera(CXCamera(Vec3(0, 1, 0))) {}
 
 CXRMRenderer::CXRMRenderer(const CXRenderScene& renderScene, const CXCamera& camera) :
 	_renderScene(renderScene), _camera(camera) {}

@@ -10,8 +10,12 @@ class CXCamera
 {
 public:
 	Vec3 position;
-	Vec3 lookDirection;
 
-	CXCamera(Vec3 _position, Vec3 _lookDirection);
+	CXCamera(Vec3 _position);
 	CXCamera(const CXCamera& other);
+
+	/// <summary>
+	/// Get's ray direction of this camera using a uv screen coordinate :D
+	/// </summary>
+	Vec3 GetRayDirection(float uv_x, float uv_y) const;
 };

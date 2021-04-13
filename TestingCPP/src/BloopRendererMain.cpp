@@ -28,7 +28,7 @@ int main()
 void DoRenderSimpleScene(const Logger& logger)
 {
 	CXRenderScene renderScene;
-	CXCamera camera(Vec3(0, 1, 0), Vec3(0, 0, 1)); // looking forward
+	CXCamera camera(Vec3(0, 1, 0)); // we don't care about where it is looking at rn it's fixed :D
 
 	renderScene.Add(CXRenderObject(Vec3(0, 1, 5)));
 
