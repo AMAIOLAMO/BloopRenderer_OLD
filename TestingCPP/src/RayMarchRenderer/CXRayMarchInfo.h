@@ -17,6 +17,8 @@ public:
 
 	CXRayMarchInfo() = delete;
 
+	~CXRayMarchInfo();
+
 	/// <summary>
 	/// IF YOU ARE SEEING THIS, YOU AREN'T MEANT TO CREATE THIS UNLESS YOU KNOW WHAT U ARE DOING :D
 	/// </summary>

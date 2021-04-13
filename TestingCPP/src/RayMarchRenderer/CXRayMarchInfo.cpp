@@ -1,5 +1,10 @@
 #include "CXRayMarchInfo.h"
 
+CXRayMarchInfo::~CXRayMarchInfo()
+{
+	delete renderObject;
+}
+
 CXRayMarchInfo::CXRayMarchInfo(const Vec3& _hitPoint, bool _isHit, float _hitDistance,
 	const CXRenderObject& _renderObject) :
 	hitPoint(_hitPoint), isHit(_isHit), hitDistance(_hitDistance), renderObject(&_renderObject) {}
