@@ -41,7 +41,9 @@ public:
 	/// (WILL OPTIMIZE WITH A CHUNK BASED DISTANCE MAP)
 	/// </summary>
 	bool TryGetClosestDistance(Vec3 fromPoint, float* const out_distance,
-		const CXRenderObject* out_renderObject) const;
+		CXRenderObject** out_renderObject_ptr) const;
+	/*bool TryGetClosestDistance(Vec3 fromPoint, float* const out_distance,
+		std::shared_ptr<CXRenderObject>* const out_renderObject_sharePtr) const;*/
 
 	/// <summary>
 	/// Get's the closest distance from the specified from Point to the entire scene
