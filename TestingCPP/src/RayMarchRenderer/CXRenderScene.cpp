@@ -17,7 +17,7 @@ CXRenderScene& CXRenderScene::Add(const CXRenderObject& Obj)
 	return *this; //for chaining methods together
 }
 
-bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint, float* out_distance) const
+bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint, float* const out_distance) const
 {
 	if (_rendObjects.size() == 0)
 	{
