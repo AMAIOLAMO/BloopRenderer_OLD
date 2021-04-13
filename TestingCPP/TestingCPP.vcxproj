@@ -155,12 +155,14 @@
     <ClCompile Include="src\CxLib\Logger\Logger.cpp" />
     <ClCompile Include="src\BloopRendererMain.cpp" />
     <ClCompile Include="src\RayMarchRenderer\CXCamera.cpp" />
+    <ClCompile Include="src\RayMarchRenderer\CXRayMarchInfo.cpp" />
     <ClCompile Include="src\RayMarchRenderer\CXRenderScene.cpp" />
     <ClCompile Include="src\RayMarchRenderer\CXRMRenderer.cpp" />
     <ClCompile Include="src\RayMarchRenderer\RenderObjects\CXRenderObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\RayMarchRenderer\CXCamera.h" />
+    <ClInclude Include="src\RayMarchRenderer\CXRayMarchInfo.h" />
     <ClInclude Include="src\RayMarchRenderer\CXRMRenderer.h" />
     <ClInclude Include="src\CxLib\BitMap\CXBitMap.h" />
     <ClInclude Include="src\CxLib\BitMap\CXColor.h" />

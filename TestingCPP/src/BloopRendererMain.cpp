@@ -34,8 +34,10 @@ void DoRenderSimpleScene(const Logger& logger)
 
 	logger.Log(renderScene.GetRendObjects().size());
 
-	//renderScene.EmplaceAdd(0, 1, 5);
 	renderScene.Add(CXRenderObject(Vec3(0, 1, 5)));
+
+	//renderScene.EmplaceAdd(0, 1, 5);
+	//renderScene.Add(CXRenderObject(Vec3(0, 1, 5)));
 
 	CXRMRenderer renderer(renderScene, camera);
 

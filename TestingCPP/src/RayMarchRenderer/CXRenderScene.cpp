@@ -17,7 +17,50 @@ CXRenderScene& CXRenderScene::Add(const CXRenderObject& Obj)
 	return *this; //for chaining methods together
 }
 
-bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint, float* const out_distance) const
+CXRayMarchInfo CXRenderScene::RayMarch(Vec3 rayOrigin, Vec3 rayDirection,
+	size_t maxMarchIteration, float minSurfaceDistance, float farViewDistance) const
+{
+	float distanceFromOriginMarched = .0f;
+
+	bool isHit = false;
+
+	Vec3 targetHitPoint(0, 0, 0);
+
+	//we don't initialize it first
+	CXRenderObject* targetRenderObject = nullptr;
+
+	for (size_t i = 0; i < maxMarchIteration; i++)
+	{
+		Vec3 pointMarchedTo = rayOrigin + rayDirection * distanceFromOriginMarched;
+
+		float closestSurfDistInSceneFromMarchedPoint;
+
+		//imagine we draw a circle to the closest distance if didn't get any closest distance.... then no object :D
+		if (!TryGetClosestDistance(pointMarchedTo, &closestSurfDistInSceneFromMarchedPoint, targetRenderObject))
+			continue;
+
+		//else we got a distance with a marched point and the target render object
+
+		//float closestSurfDistInSceneFromMarchedPoint = GetClosestDistance(pointMarchedTo);
+
+		distanceFromOriginMarched += closestSurfDistInSceneFromMarchedPoint;
+
+		if (closestSurfDistInSceneFromMarchedPoint < minSurfaceDistance) //is hit :D (raymarch circle so small)
+		{
+			isHit = true;
+			targetHitPoint = pointMarchedTo;
+			break;
+		}
+		//else
+		if (distanceFromOriginMarched > farViewDistance) //bruh not hit??? :< shoot too far
+			break;
+	}
+
+	return CXRayMarchInfo(targetHitPoint, isHit, distanceFromOriginMarched, targetRenderObject);
+}
+
+bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint,
+	float* const out_distance, const CXRenderObject* out_renderObject) const
 {
 	if (_rendObjects.size() == 0)
 	{
@@ -27,12 +70,16 @@ bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint, float* const out_dista
 	if (_rendObjects.size() == 1)
 	{
 		*out_distance = _rendObjects[0].GetSurfDistance(fromPoint);
+
+		//change PTR!! NOT CONTENT
+		out_renderObject = &_rendObjects[0];
 		return true;
 	}
 
 	//else there are more than 1 rendering objects :D (at least 2)
 
 	float minDist = _rendObjects[0].GetSurfDistance(fromPoint);
+	int targetIndex = 0;
 
 	//from the second (because we used the first one)
 	for (size_t i = 1; i < _rendObjects.size(); i++)
@@ -41,10 +88,16 @@ bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint, float* const out_dista
 
 		//if current distance is smaller than the min distance, update :D
 		if (minDist > currentDist)
+		{
 			minDist = currentDist;
+			targetIndex = i;
+		}
 	}
 
 	*out_distance = minDist;
+
+	//change PTR!! NOT CONTENT
+	out_renderObject = &_rendObjects[targetIndex];
 
 	return true;
 }
@@ -52,7 +105,8 @@ bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint, float* const out_dista
 float CXRenderScene::GetClosestDistance(Vec3 fromPoint) const
 {
 	float outDist;
-	TryGetClosestDistance(fromPoint, &outDist);
+	CXRenderObject* renderObj = nullptr;
+	TryGetClosestDistance(fromPoint, &outDist, renderObj);
 
 	return outDist;
 }

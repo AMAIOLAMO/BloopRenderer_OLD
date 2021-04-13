@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include "CXRayMarchInfo.h"
 #include "RenderObjects/CXRenderObject.h"
 
 /// <summary>
@@ -32,11 +33,15 @@ public:
 	/// </summary>
 	CXRenderScene& Add(const CXRenderObject& obj);
 
+	CXRayMarchInfo RayMarch(Vec3 rayOrigin, Vec3 rayDirection,
+		size_t maxMarchIteration,float minSurfaceDistance, float farViewDistance) const;
+
 	/// <summary>
 	/// Tries to get the closest distance from a specified from point to the entire scene
 	/// (WILL OPTIMIZE WITH A CHUNK BASED DISTANCE MAP)
 	/// </summary>
-	bool TryGetClosestDistance(Vec3 fromPoint, float* const out_distance) const;
+	bool TryGetClosestDistance(Vec3 fromPoint, float* const out_distance,
+		const CXRenderObject* out_renderObject) const;
 
 	/// <summary>
 	/// Get's the closest distance from the specified from Point to the entire scene
