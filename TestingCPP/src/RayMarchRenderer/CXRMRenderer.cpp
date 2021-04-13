@@ -4,25 +4,28 @@ static const float DEFAULT_FAR_VIEW_DISTANCE = 100.0f;
 
 //private
 
-float CXRMRenderer::RayMarchFromCam(Vec3 rayDir) const
+CXRayMarchInfo CXRMRenderer::RayMarchFromCam(Vec3 rayDirection) const
 {
-	float distanceFromOriginMarched = .0f;
+	//float distanceFromOriginMarched = .0f;
 
-	for (size_t i = 0; i < maxMarchingIteration; i++)
-	{
-		Vec3 marchedPoint = _camera.position + rayDir * distanceFromOriginMarched;
+	//for (size_t i = 0; i < maxMarchingIteration; i++)
+	//{
+	//	Vec3 marchedPoint = _camera.position + rayDir * distanceFromOriginMarched;
 
-		float closestSceneDistanceFromMarchPoint = _renderScene.GetClosestDistance(marchedPoint);
+	//	float closestSceneDistanceFromMarchPoint = _renderScene.GetClosestDistance(marchedPoint);
 
-		//add to the distance from origin marched :>
-		distanceFromOriginMarched += closestSceneDistanceFromMarchPoint;
+	//	//add to the distance from origin marched :>
+	//	distanceFromOriginMarched += closestSceneDistanceFromMarchPoint;
 
-		//if marching circle's Radius is smaller than the min surface distance or is larger than the far view distance
-		if (distanceFromOriginMarched < minSurfaceDistance ||
-			distanceFromOriginMarched > _camera.farViewDistance) break;
-	}
+	//	//if marching circle's Radius is smaller than the min surface distance or is larger than the far view distance
+	//	if (distanceFromOriginMarched < minSurfaceDistance ||
+	//		distanceFromOriginMarched > _camera.farViewDistance) break;
+	//}
 
-	return distanceFromOriginMarched;
+	//return distanceFromOriginMarched;
+
+	return _renderScene.RayMarch(_camera.position, rayDirection,
+		maxMarchingIteration, minSurfaceDistance, _camera.farViewDistance);
 }
 
 //public
@@ -58,11 +61,13 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 			//each pixel (which is UV :D)
 			CXColor finalColor;
 
-			float distance = RayMarchFromCam(rayDirFromCam);
+			CXRayMarchInfo rayMarchInfo = RayMarchFromCam(rayDirFromCam);
+
+			//float distance = RayMarchFromCam(rayDirFromCam);
 
 			//Vec3 rayPoint = _camera.position + rayDirFromCam * distance;
 
-			float greyScale = 1.0f - distance / 6.0f;
+			float greyScale = 1.0f - rayMarchInfo.hitDistance / 6.0f;
 
 			finalColor = CXColor::FromGreyScale(greyScale);
 
