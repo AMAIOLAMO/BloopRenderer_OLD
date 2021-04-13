@@ -16,4 +16,9 @@ struct CXMath
 	/// clamps the value between min and max
 	/// </summary>
 	static float Clamp(float value, float min, float max);
+
+	/// <summary>
+	/// clamps the value between 0 and 1
+	/// </summary>
+	static float Clamp01(float value);
 };

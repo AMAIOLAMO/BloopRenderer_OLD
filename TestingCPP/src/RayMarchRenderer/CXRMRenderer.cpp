@@ -1,7 +1,34 @@
 #include "CXRMRenderer.h"
 
+static const float DEFAULT_FAR_VIEW_DISTANCE = 100.0f;
+
+//private
+
+float CXRMRenderer::RayMarchFromCam(Vec3 rayDir) const
+{
+	float distanceFromOriginMarched = .0f;
+
+	for (size_t i = 0; i < maxMarchingIteration; i++)
+	{
+		Vec3 marchedPoint = _camera.position + rayDir * distanceFromOriginMarched;
+
+		float closestSceneDistanceFromMarchPoint = _renderScene.GetClosestDistance(marchedPoint);
+
+		//add to the distance from origin marched :>
+		distanceFromOriginMarched += closestSceneDistanceFromMarchPoint;
+
+		//if marching circle's Radius is smaller than the min surface distance or is larger than the far view distance
+		if (distanceFromOriginMarched < minSurfaceDistance ||
+			distanceFromOriginMarched > _camera.farViewDistance) break;
+	}
+
+	return distanceFromOriginMarched;
+}
+
+//public
+
 CXRMRenderer::CXRMRenderer() :
-	_renderScene(CXRenderScene()), _camera(CXCamera(Vec3(0, 1, 0))) {}
+	_renderScene(CXRenderScene()), _camera(CXCamera(Vec3(0, 1, 0), DEFAULT_FAR_VIEW_DISTANCE)) {}
 
 CXRMRenderer::CXRMRenderer(const CXRenderScene& renderScene, const CXCamera& camera) :
 	_renderScene(renderScene), _camera(camera) {}
@@ -23,8 +50,21 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 	{
 		for (int x = 0; x < width; x++)
 		{
-			//each pixel (which is UV :D) (test as a white first :D)
-			CXColor finalColor = CXColor(1, 1, 1);
+			float uv_x = -.5f + (float)x / width,
+				uv_y = -.5f + (float)y / height;
+
+			Vec3 rayDirFromCam = _camera.GetRayDirection(uv_x, uv_y);
+
+			//each pixel (which is UV :D)
+			CXColor finalColor;
+
+			float distance = RayMarchFromCam(rayDirFromCam);
+
+			//Vec3 rayPoint = _camera.position + rayDirFromCam * distance;
+
+			float greyScale = 1.0f - distance / 6.0f;
+
+			finalColor = CXColor::FromGreyScale(greyScale);
 
 			targetBitmap.SetColor(finalColor, x, y);
 		}

@@ -14,3 +14,8 @@ float CXMath::Clamp(float value, float min, float max)
 {
 	return value < min ? min : (value > max ? max : value);
 }
+
+float CXMath::Clamp01(float value)
+{
+	return Clamp(value, 0.0f, 1.0f);
+}

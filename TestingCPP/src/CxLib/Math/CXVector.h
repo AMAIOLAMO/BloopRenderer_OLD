@@ -66,28 +66,28 @@ public:
 
 #pragma region Operator overrides
 
-	Vec3 operator+ (const Vec3& other);
+	Vec3 operator+ (const Vec3& other) const;
 	void operator+= (const Vec3& other);
 
-	Vec3 operator- (const Vec3& other);
+	Vec3 operator- (const Vec3& other) const;
 	void operator-= (const Vec3& other);
 
-	Vec3 operator* (const Vec3& other);
+	Vec3 operator* (const Vec3& other) const;
 	void operator*= (const Vec3& other);
 
-	Vec3 operator/ (const Vec3& other);
+	Vec3 operator/ (const Vec3& other) const;
 	void operator/= (const Vec3& other);
 
 
-	Vec3 operator* (float scale);
+	Vec3 operator* (float scale) const;
 	void operator*= (float scale);
 
-	Vec3 operator/ (float scale);
+	Vec3 operator/ (float scale) const;
 	void operator/= (float scale);
 
-	bool operator==(const Vec3& other);
+	bool operator==(const Vec3& other) const;
 
-	Vec3 operator- ();
+	Vec3 operator- () const;
 
 #pragma endregion
 

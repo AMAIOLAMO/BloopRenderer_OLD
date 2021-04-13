@@ -16,6 +16,8 @@ void DoRenderSimpleScene(const Logger&);
 
 const char* TARGET_IMG_PATH = "C:/Users/alienware/Desktop/myImage.bmp";
 
+const float FAR_VIEW_DISTANCE = 100.0f;
+
 int main()
 {
 	Logger myLogger;
@@ -28,7 +30,9 @@ int main()
 void DoRenderSimpleScene(const Logger& logger)
 {
 	CXRenderScene renderScene;
-	CXCamera camera(Vec3(0, 1, 0)); // we don't care about where it is looking at rn it's fixed :D
+	CXCamera camera(Vec3(0, 1, 0), FAR_VIEW_DISTANCE); // we don't care about where it is looking at rn it's fixed :D
+
+	logger.Log(std::to_string(renderScene.GetRendObjects().size()));
 
 	renderScene.Add(CXRenderObject(Vec3(0, 1, 5)));
 

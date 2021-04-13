@@ -1,10 +1,10 @@
 #include "CXCamera.h"
 
-CXCamera::CXCamera(Vec3 _position) :
-	position(_position) {}
+CXCamera::CXCamera(Vec3 _position, float _farViewDistance) :
+	position(_position), farViewDistance(_farViewDistance) {}
 
 CXCamera::CXCamera(const CXCamera& other) :
-	position(other.position) {}
+	position(other.position), farViewDistance(other.farViewDistance) {}
 
 Vec3 CXCamera::GetRayDirection(float uv_x, float uv_y) const
 {

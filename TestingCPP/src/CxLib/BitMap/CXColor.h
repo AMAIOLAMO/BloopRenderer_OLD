@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Math/CXMath.h"
+
 /// <summary>
 /// float color by CXRedix
 /// </summary>
@@ -27,6 +29,8 @@ public:
 	/// Convert's the color into a 1 byte unsigned char value 0 -> r, 1 -> g, 2 -> b; NOTE: MUST DELETE AFTER USING!!!
 	/// </summary>
 	unsigned char* ToUnsignedCharBlock();
+
+	static CXColor FromGreyScale(float greyscale);
 };
 
 /// <summary>

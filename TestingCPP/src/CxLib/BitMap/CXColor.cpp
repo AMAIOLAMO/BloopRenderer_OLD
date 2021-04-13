@@ -1,7 +1,5 @@
 #include "CXColor.h"
 
-
-
 // -------------------------- CXCOLOR -------------------------- //
 
 CXColor::CXColor() { SetColor(0, 0, 0); }
@@ -12,6 +10,10 @@ CXColor::~CXColor() {}
 
 void CXColor::SetColor(float _r, float _g, float _b)
 {
+	_r = CXMath::Clamp01(_r);
+	_g = CXMath::Clamp01(_g);
+	_b = CXMath::Clamp01(_b);
+
 	r = _r; g = _g; b = _b;
 }
 
@@ -32,6 +34,11 @@ unsigned char* CXColor::ToUnsignedCharBlock()
 	};
 
 	return result;
+}
+
+CXColor CXColor::FromGreyScale(float greyscale)
+{
+	return CXColor(greyscale, greyscale, greyscale);
 }
 
 // -------------------------- UCXCOLOR -------------------------- //

@@ -16,7 +16,13 @@ private:
 	CXCamera _camera;
 
 public:
-	
+	unsigned int maxMarchingIteration = 100; //the max iterations a ray marching renderer should iterate
+	float minSurfaceDistance = .01f; //the minimum distance for the ray marching sphere to be :D
+
+private:
+	float RayMarchFromCam(Vec3 rayDir) const;
+
+public:
 	/// <summary>
 	/// creates a very empty scene to render
 	/// </summary>

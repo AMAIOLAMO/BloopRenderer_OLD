@@ -89,7 +89,7 @@ std::string Vec3::ToString() const
 
 #pragma region Operator Overloads
 
-Vec3 Vec3::operator+ (const Vec3& other)
+Vec3 Vec3::operator+ (const Vec3& other) const
 {
 	return Vec3(x + other.x, y + other.y, z + other.z);
 }
@@ -100,7 +100,7 @@ void Vec3::operator+=(const Vec3& other)
 }
 
 
-Vec3 Vec3::operator- (const Vec3& other)
+Vec3 Vec3::operator- (const Vec3& other) const
 {
 	return Vec3(x - other.x, y - other.y, z - other.z);
 }
@@ -111,7 +111,7 @@ void Vec3::operator-=(const Vec3& other)
 }
 
 
-Vec3 Vec3::operator* (const Vec3& other)
+Vec3 Vec3::operator* (const Vec3& other) const
 {
 	return Vec3(x * other.x, y * other.y, z * other.z);
 }
@@ -122,7 +122,7 @@ void Vec3::operator*=(const Vec3& other)
 }
 
 
-Vec3 Vec3::operator/ (const Vec3& other)
+Vec3 Vec3::operator/ (const Vec3& other) const
 {
 	return Vec3(x / other.x, y / other.y, z / other.z);
 }
@@ -134,7 +134,7 @@ void Vec3::operator/=(const Vec3& other)
 
 
 
-Vec3 Vec3::operator* (float scale)
+Vec3 Vec3::operator* (float scale) const
 {
 	return Vec3(x * scale, y * scale, z * scale);
 }
@@ -145,7 +145,7 @@ void Vec3::operator*=(float scale)
 }
 
 
-Vec3 Vec3::operator/ (float scale)
+Vec3 Vec3::operator/ (float scale) const
 {
 	return Vec3(x / scale, y / scale, z / scale);
 }
@@ -156,13 +156,13 @@ void Vec3::operator/=(float scale)
 }
 
 
-bool Vec3::operator==(const Vec3& other)
+bool Vec3::operator==(const Vec3& other) const
 {
 	return x == other.x && y == other.y && z == other.z;
 }
 
 
-Vec3 Vec3::operator-()
+Vec3 Vec3::operator-() const
 {
 	return Vec3(-x, -y, -z);
 }

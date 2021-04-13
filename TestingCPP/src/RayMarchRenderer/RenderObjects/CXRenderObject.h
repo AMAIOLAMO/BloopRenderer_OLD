@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../CxLib/Math/CXVector.h"
+#include "../../CxLib/Math/CXVector.h"
 
 /// <summary>
 /// A renderable object to pass into the CXScene
@@ -17,10 +17,10 @@ public:
 	/// <summary>
 	/// Get's the distance between the target position to the specified from Position
 	/// </summary>
-	virtual float GetSurfDistance(Vec3 fromPos);
+	virtual float GetSurfDistance(Vec3 fromPos) const;
 
 	/// <summary>
 	/// Get's the normal from the target point with the target precision (default as .01f)
 	/// </summary>
-	virtual Vec3 GetNormal(Vec3 pointOnSurface, float precision = .01f);
+	virtual Vec3 GetNormal(Vec3 pointOnSurface, float precision = .01f) const;
 };
