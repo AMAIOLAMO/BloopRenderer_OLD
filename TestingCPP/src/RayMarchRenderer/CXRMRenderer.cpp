@@ -6,7 +6,7 @@ static const float DEFAULT_FAR_VIEW_DISTANCE = 100.0f;
 
 CXRayMarchInfo CXRMRenderer::RayMarchFromCam(const Vec3& rayDirection) const
 {
-	return _renderScene.RayMarch(_camera.position, rayDirection,
+	return _renderScene.RayMarchTo(_camera.position, rayDirection,
 		maxMarchingIteration, minSurfaceDistance, _camera.farViewDistance);
 }
 

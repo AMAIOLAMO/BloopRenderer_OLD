@@ -10,5 +10,5 @@ public:
 public:
 	CXSphereRenderObject(Vec3 _position, float _radius);
 
-	float GetSurfDistance(Vec3 fromPos) const override;
+	float GetSurfDistance(const Vec3& fromPos) const override;
 };

@@ -17,7 +17,7 @@ CXRenderScene& CXRenderScene::Add(const std::shared_ptr<CXRenderObject>& rendObj
 	return *this; //for chaining methods together
 }
 
-CXRayMarchInfo CXRenderScene::RayMarch(const Vec3& rayOrigin, const Vec3& rayDirection,
+CXRayMarchInfo CXRenderScene::RayMarchTo(const Vec3& rayOrigin, const Vec3& rayDirection,
 	unsigned int maxMarchIteration, float minSurfaceDistance, float farViewDistance) const
 {
 	float distanceFromOriginMarched = .0f;
@@ -57,7 +57,7 @@ CXRayMarchInfo CXRenderScene::RayMarch(const Vec3& rayOrigin, const Vec3& rayDir
 	return CXRayMarchInfo(targetHitPoint, isHit, distanceFromOriginMarched, targetRendObj_sharePtr);
 }
 
-bool CXRenderScene::TryGetClosestDistance(Vec3 fromPoint,
+bool CXRenderScene::TryGetClosestDistance(const Vec3& fromPoint,
 	float* const out_distance, std::shared_ptr<CXRenderObject>* const out_renderObject_ptr) const
 {
 	if (_rendObject_sharePtrs.size() == 0)
