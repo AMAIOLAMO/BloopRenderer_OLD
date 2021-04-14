@@ -17,9 +17,10 @@ private:
 
 public:
 	unsigned int maxMarchingIteration = 100; //the max iterations a ray marching renderer should iterate
-	float minSurfaceDistance = .01f; //the minimum distance for the ray marching sphere to be :D
+	float minSurfaceDistance = .02f; //the minimum distance for the ray marching sphere to be :D
 
 private:
+	CXRayMarchInfo RayMarchFrom(const Vec3& rayOrigin, const Vec3& rayDirection) const;
 	CXRayMarchInfo RayMarchFromCam(const Vec3& rayDirection) const;
 
 public:

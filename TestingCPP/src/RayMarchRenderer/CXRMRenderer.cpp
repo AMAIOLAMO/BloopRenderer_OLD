@@ -4,10 +4,15 @@ static const float DEFAULT_FAR_VIEW_DISTANCE = 100.0f;
 
 //private
 
+CXRayMarchInfo CXRMRenderer::RayMarchFrom(const Vec3& rayOrigin, const Vec3& rayDirection) const
+{
+	return _renderScene.RayMarchTo(rayOrigin, rayDirection,
+		maxMarchingIteration, minSurfaceDistance, _camera.farViewDistance);
+}
+
 CXRayMarchInfo CXRMRenderer::RayMarchFromCam(const Vec3& rayDirection) const
 {
-	return _renderScene.RayMarchTo(_camera.position, rayDirection,
-		maxMarchingIteration, minSurfaceDistance, _camera.farViewDistance);
+	return RayMarchFrom(_camera.position, rayDirection);
 }
 
 //public
@@ -45,15 +50,38 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 			//each pixel (which is UV :D)
 			CXColor finalColor(0, 0, 0);
 
-			CXRayMarchInfo rayMarchInfo = RayMarchFromCam(rayDirFromCam);
+			CXRayMarchInfo rayMarchFromCamInfo = RayMarchFromCam(rayDirFromCam);
 
-			if (rayMarchInfo.isHit)
+			if (rayMarchFromCamInfo.isHit)
 			{
-				/*finalColor.SetColor(rayMarchInfo.hitPoint.x, rayMarchInfo.hitPoint.y, rayMarchInfo.hitPoint.z);*/
+				static const Vec3 fakeLightDir_normalized = Vec3::GetNormalized(Vec3(-.3f, 1, -.3f));
 
-				Vec3 normal = rayMarchInfo.rendObject_sharePtr->GetNormal(rayMarchInfo.hitPoint);
+				Vec3 normal = rayMarchFromCamInfo.rendObject_sharePtr->GetNormal(rayMarchFromCamInfo.hitPoint);
 
-				finalColor.SetColor(normal.x, normal.y, normal.z);
+				//this is for checking shadows
+				CXRayMarchInfo rayMarchFromPointInfo =
+					RayMarchFrom(rayMarchFromCamInfo.hitPoint + fakeLightDir_normalized, fakeLightDir_normalized);
+
+				//the light grey scale
+				float grayScale = Vec3::Dot(fakeLightDir_normalized, normal);
+
+				static const float shadowRemoveAmount = .7f;
+
+				//has shadow
+				if (rayMarchFromPointInfo.isHit)
+				{
+					//then we deduce from the shadow :D
+					grayScale -= shadowRemoveAmount;
+				}
+
+				finalColor = CXColor::FromGreyScale(grayScale);
+			}
+			else
+			{
+				//make not completely black
+				static CXColor tempBackground = CXColor::FromGreyScale(0.2f);
+
+				finalColor = tempBackground;
 			}
 
 			targetBitmap.SetColor(finalColor, x, y);
