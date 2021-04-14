@@ -54,7 +54,6 @@ CXRayMarchInfo CXRenderScene::RayMarch(Vec3 rayOrigin, Vec3 rayDirection,
 		if (distanceFromOriginMarched > farViewDistance) //bruh not hit??? :< shoot too far
 			break;
 	}
-
 	return CXRayMarchInfo(targetHitPoint, isHit, distanceFromOriginMarched, *targetRenderObject_ptr);
 }
 

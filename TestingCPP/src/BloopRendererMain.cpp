@@ -32,22 +32,20 @@ void DoRenderSimpleScene(const Logger& logger)
 	CXRenderScene renderScene;
 	CXCamera camera(Vec3(0, 1, 0), FAR_VIEW_DISTANCE); // we don't care about where it is looking at rn it's fixed :D
 
-	logger.Log(renderScene.GetRendObjects().size());
+	logger << renderScene.GetRendObjects().size() << Logger::endl;
+	//logger.Log();
 
 	renderScene.Add(CXRenderObject(Vec3(0, 1, 5)));
 
-	//renderScene.EmplaceAdd(0, 1, 5);
-	//renderScene.Add(CXRenderObject(Vec3(0, 1, 5)));
-
 	CXRMRenderer renderer(renderScene, camera);
 
-	CXBitMap renderedBitmap(400, 400);
+	CXBitMap renderedBitmap(1000, 1000);
 
 	renderer.RenderToBitmap(renderedBitmap);
 
 	renderedBitmap.ExportTo(TARGET_IMG_PATH);
 
-	logger.Log("Finished rendering from the renderer");
+	logger << "Finished rendering from the renderer" << Logger::endl;
 }
 
 void DoGenerateRandomBitMap(const Logger& logger)

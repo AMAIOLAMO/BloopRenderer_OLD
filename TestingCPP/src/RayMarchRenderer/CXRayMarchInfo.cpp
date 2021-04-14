@@ -2,7 +2,9 @@
 
 CXRayMarchInfo::~CXRayMarchInfo()
 {
-	delete renderObject_ptr;
+	//if render object ptr still exists, then delete it :D to prevent mem leaks
+	if(renderObject_ptr)
+		delete renderObject_ptr;
 }
 
 CXRayMarchInfo::CXRayMarchInfo(const Vec3& _hitPoint, bool _isHit, float _hitDistance,

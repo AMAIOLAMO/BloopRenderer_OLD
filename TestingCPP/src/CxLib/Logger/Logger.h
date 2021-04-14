@@ -13,6 +13,12 @@ private:
 	HANDLE hndConsole;
 
 public:
+	/// <summary>
+	/// an end line character '\n'
+	/// </summary>
+	static const char endl = '\n';
+
+public:
 	Logger();
 
 	/// <summary>
@@ -22,6 +28,12 @@ public:
 	void Log(const T& message) const
 	{
 		std::cout << message << std::endl;
+	}
+
+	template <typename T>
+	void RawLog(const T& message) const
+	{
+		std::cout << message;
 	}
 
 	/// <summary>
@@ -41,10 +53,13 @@ public:
 
 #pragma region Operation overloading
 
+	/// <summary>
+	/// Raw logs to the console
+	/// </summary>
 	template <typename T>
 	const Logger& operator<<(const T& message) const
 	{
-		Log(message);
+		std::cout << message;
 		return *this;
 	}
 
