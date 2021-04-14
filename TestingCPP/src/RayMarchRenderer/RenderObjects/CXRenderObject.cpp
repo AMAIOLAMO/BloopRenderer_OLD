@@ -31,6 +31,7 @@ Vec3 CXRenderObject::GetSurfDistance_Vec(Vec3 fromPos) const
 static const float Epsilon = 1e-3f;
 static const float TwoEpsilon = Epsilon * 2.0f;
 
+//stole from Gary (thx Gary :D)
 Vec3 CXRenderObject::GetNormal(Vec3 pointOnSurface) const
 {
 	//a static so compiler won't create each time when we call this function
