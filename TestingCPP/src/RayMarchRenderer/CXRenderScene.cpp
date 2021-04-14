@@ -30,12 +30,12 @@ CXRayMarchInfo CXRenderScene::RayMarch(Vec3 rayOrigin, Vec3 rayDirection,
 
 	for (size_t i = 0; i < maxMarchIteration; i++)
 	{
-		Vec3 pointMarchedTo = rayOrigin + rayDirection * distanceFromOriginMarched;
+		targetHitPoint = rayOrigin + rayDirection * distanceFromOriginMarched;
 
 		float closestSurfDistInSceneFromMarchedPoint;
 
 		//imagine we draw a circle to the closest distance if didn't get any closest distance.... then no object :D
-		if (!TryGetClosestDistance(pointMarchedTo, &closestSurfDistInSceneFromMarchedPoint, &targetRenderObject_ptr))
+		if (!TryGetClosestDistance(targetHitPoint, &closestSurfDistInSceneFromMarchedPoint, &targetRenderObject_ptr))
 			continue;
 
 		//else we got a distance with a marched point and the target render object
@@ -47,7 +47,7 @@ CXRayMarchInfo CXRenderScene::RayMarch(Vec3 rayOrigin, Vec3 rayDirection,
 		if (closestSurfDistInSceneFromMarchedPoint < minSurfaceDistance) //is hit :D (raymarch circle so small)
 		{
 			isHit = true;
-			targetHitPoint = pointMarchedTo;
+			//targetHitPoint = pointMarchedTo;
 			break;
 		}
 		//else

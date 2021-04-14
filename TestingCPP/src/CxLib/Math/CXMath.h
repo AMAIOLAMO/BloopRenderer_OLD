@@ -2,6 +2,7 @@
 
 struct CXMath
 {
+public:
 	/// <summary>
 	/// Linear interpolates between two values
 	/// </summary>

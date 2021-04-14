@@ -13,7 +13,7 @@ public:
 	const Vec3 hitPoint;
 	const bool isHit;
 	const float hitDistance;
-	const CXRenderObject* const renderObject;
+	const CXRenderObject* const renderObject_ptr;
 
 	CXRayMarchInfo() = delete;
 

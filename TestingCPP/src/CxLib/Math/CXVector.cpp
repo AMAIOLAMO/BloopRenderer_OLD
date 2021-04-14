@@ -1,5 +1,10 @@
 #include "CXVector.h"
 
+Vec3::Vec3()
+{
+	Set(0.0f, 0.0f, 0.0f);
+}
+
 Vec3::Vec3(float _x, float _y, float _z)
 {
 	Set(_x, _y, _z);
@@ -189,6 +194,18 @@ float Vec3::GetLength(const Vec3& a)
 float Vec3::GetLengthSqr(const Vec3& a)
 {
 	return a.GetLengthSqr();
+}
+
+Vec3 Vec3::GetLenVect(const Vec3& a, float len)
+{
+	float vecLen = a.GetLength();
+
+	//if already same len then we don't calculate
+	if (vecLen == len)
+		return a;
+	//else is different len
+
+	return GetNormalized(a) * len;
 }
 
 Vec3 Vec3::GetNormalized(const Vec3& a)

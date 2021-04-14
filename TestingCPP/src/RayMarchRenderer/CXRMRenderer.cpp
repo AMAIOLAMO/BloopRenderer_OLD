@@ -35,10 +35,12 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 	{
 		for (int x = 0; x < width; x++)
 		{
-			float uv_x = -.5f + (float)x / width,
-				uv_y = -.5f + (float)y / height;
+			float uv_x = (float)x / width,
+				uv_y = (float)y / height;
 
-			Vec3 rayDirFromCam = _camera.GetRayDirection(uv_x, uv_y);
+			float camUV_x = uv_x -.5f, camUV_y = uv_y -.5f;
+
+			Vec3 rayDirFromCam = _camera.GetRayDirection(camUV_x, camUV_y);
 
 			//each pixel (which is UV :D)
 			CXColor finalColor(0, 0, 0);
@@ -47,7 +49,9 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 
 			if (rayMarchInfo.isHit)
 			{
-				Vec3 normal = rayMarchInfo.renderObject->GetNormal(rayMarchInfo.hitPoint);
+				/*finalColor.SetColor(rayMarchInfo.hitPoint.x, rayMarchInfo.hitPoint.y, rayMarchInfo.hitPoint.z);*/
+
+				Vec3 normal = rayMarchInfo.renderObject_ptr->GetNormal(rayMarchInfo.hitPoint);
 
 				finalColor.SetColor(normal.x, normal.y, normal.z);
 			}

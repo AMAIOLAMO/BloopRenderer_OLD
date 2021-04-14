@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../CxLib/Math/CXVector.h"
+#include <math.h>
 
 /// <summary>
 /// A renderable object to pass into the CXScene
@@ -10,6 +11,7 @@ class CXRenderObject
 public:
 	Vec3 position;
 
+public:
 	//Quaternion rotation; // -> NEVER GONNA TOUCH THIS LOL (might)
 
 	CXRenderObject(Vec3 _position);
@@ -25,7 +27,12 @@ public:
 	virtual float GetSurfDistance(Vec3 fromPos) const;
 
 	/// <summary>
+	/// Get's the distance between the target position to the specified from position
+	/// </summary>
+	virtual Vec3 GetSurfDistance_Vec(Vec3 fromPos) const;
+
+	/// <summary>
 	/// Get's the normal from the target point with the target precision (default as .01f)
 	/// </summary>
-	virtual Vec3 GetNormal(Vec3 pointOnSurface, float precision = .01f) const;
+	virtual Vec3 GetNormal(Vec3 pointOnSurface) const;
 };

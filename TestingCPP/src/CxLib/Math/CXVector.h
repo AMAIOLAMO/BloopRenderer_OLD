@@ -14,6 +14,8 @@ public:
 		left, right, up, down, forward, backward
 	};
 
+	Vec3();
+
 	Vec3(float _x, float _y, float _z);
 
 	/// <summary>
@@ -113,6 +115,11 @@ public:
 	/// Get's the length of the vector but squared
 	/// </summary>
 	static float GetLengthSqr(const Vec3& a);
+
+	/// <summary>
+	/// Copies a new vector with a specified length
+	/// </summary>
+	static Vec3 GetLenVect(const Vec3& a, float len);
 
 	/// <summary>
 	/// copies the target vector and normalize the copied vector

@@ -166,11 +166,12 @@ void CXBitMap::ExportTo(const char* path) const
 
 			const float FLOATCOLOR_TO_UCHAR_SCALE = 255.0f;
 
+			//THIS IS STORED IN LITTLE ENDIAN STYLE
 			unsigned char ucharColor[] =
 			{
-				static_cast<unsigned char>(color.r * FLOATCOLOR_TO_UCHAR_SCALE),
+				static_cast<unsigned char>(color.b * FLOATCOLOR_TO_UCHAR_SCALE),
 				static_cast<unsigned char>(color.g * FLOATCOLOR_TO_UCHAR_SCALE),
-				static_cast<unsigned char>(color.b * FLOATCOLOR_TO_UCHAR_SCALE)
+				static_cast<unsigned char>(color.r * FLOATCOLOR_TO_UCHAR_SCALE)
 			};
 
 			//3 bytes 1 color :D
