@@ -37,11 +37,9 @@ CXRayMarchInfo CXRenderScene::RayMarchTo(const Vec3& rayOrigin, const Vec3& rayD
 		//imagine we draw a circle to the closest distance if didn't get any closest distance.... then no object :D
 		if (!TryGetClosestDistance(targetHitPoint, &closestSurfDistInSceneFromMarchedPoint, &targetRendObj_sharePtr))
 			continue;
-
 		//else we got a distance with a marched point and the target render object
 
 		//float closestSurfDistInSceneFromMarchedPoint = GetClosestDistance(pointMarchedTo);
-
 		distanceFromOriginMarched += closestSurfDistInSceneFromMarchedPoint;
 
 		if (closestSurfDistInSceneFromMarchedPoint < minSurfaceDistance) //is hit :D (raymarch circle so small)

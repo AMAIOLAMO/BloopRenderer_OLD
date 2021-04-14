@@ -2,7 +2,6 @@
 
 #include <memory>
 
-#include "CXRenderScene.h"
 #include "../CxLib/Math/CXVector.h"
 #include "RenderObjects/CXRenderObject.h"
 

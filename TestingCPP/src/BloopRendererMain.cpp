@@ -34,7 +34,7 @@ void DoRenderSimpleScene(const Logger& logger)
 	CXCamera camera(Vec3(0, 1, 0), FAR_VIEW_DISTANCE); // we don't care about where it is looking at rn it's fixed :D
 
 	//we use make shared here because we store stuff here as a pointer to be safe and easy to access
-	//renderScene.Add(std::make_shared<CXSphereRenderObject>(Vec3(0, 1, 5), 1));
+	renderScene.Add(std::make_shared<CXSphereRenderObject>(Vec3(0, 1, 5), 1));
 
 	CXRMRenderer renderer(renderScene, camera);
 

@@ -1,9 +1,27 @@
 ﻿  BloopRendererMain.cpp
-  CXRayMarchInfo.cpp
-C:\Users\alienware\source\repos\TestingCPP\TestingCPP\src\RayMarchRenderer\CXRenderScene.h(38,17): error C3646: “RayMarchTo”: 未知重写说明符
-C:\Users\alienware\source\repos\TestingCPP\TestingCPP\src\RayMarchRenderer\CXRenderScene.h(38,27): error C2059: 语法错误:“(”
-C:\Users\alienware\source\repos\TestingCPP\TestingCPP\src\RayMarchRenderer\CXRenderScene.h(39,89): error C2238: 意外的标记位于“;”之前
-  CXRenderScene.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\include\xutility(138,73): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\include\memory(2186): message : see reference to function template instantiation 'void std::_Construct_in_place<_Ty,Vec3,int>(_Ty &,Vec3 &&,int &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=CXSphereRenderObject
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\include\memory(2906): message : see reference to function template instantiation 'std::_Ref_count_obj2<_Ty>::_Ref_count_obj2<Vec3,int>(Vec3 &&,int &&)' being compiled
+          with
+          [
+              _Ty=CXSphereRenderObject
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\include\memory(2907): message : see reference to function template instantiation 'std::_Ref_count_obj2<_Ty>::_Ref_count_obj2<Vec3,int>(Vec3 &&,int &&)' being compiled
+          with
+          [
+              _Ty=CXSphereRenderObject
+          ]
+C:\Users\alienware\source\repos\TestingCPP\TestingCPP\src\BloopRendererMain.cpp(37): message : see reference to function template instantiation 'std::shared_ptr<CXSphereRenderObject> std::make_shared<CXSphereRenderObject,Vec3,int>(Vec3 &&,int &&)' being compiled
   CXRMRenderer.cpp
-  PrimitiveRenderObjects.cpp
-  正在生成代码...
+  CXRayMarchInfo.cpp
+  CXRenderScene.cpp
+  Generating Code...
+  TestingCPP.vcxproj -> C:\Users\alienware\source\repos\TestingCPP\bin\Win32\Debug\BloopRenderer.exe
