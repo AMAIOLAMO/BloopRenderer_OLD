@@ -1,2 +1,26 @@
-﻿  CXRMRenderer.cpp
+﻿  BloopRendererMain.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\include\xutility(138,73): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\include\memory(2186): message : see reference to function template instantiation 'void std::_Construct_in_place<_Ty,Vec3,int>(_Ty &,Vec3 &&,int &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=CXSphereRenderObject
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\include\memory(2906): message : see reference to function template instantiation 'std::_Ref_count_obj2<_Ty>::_Ref_count_obj2<Vec3,int>(Vec3 &&,int &&)' being compiled
+          with
+          [
+              _Ty=CXSphereRenderObject
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\include\memory(2907): message : see reference to function template instantiation 'std::_Ref_count_obj2<_Ty>::_Ref_count_obj2<Vec3,int>(Vec3 &&,int &&)' being compiled
+          with
+          [
+              _Ty=CXSphereRenderObject
+          ]
+C:\Users\alienware\source\repos\TestingCPP\TestingCPP\src\BloopRendererMain.cpp(37): message : see reference to function template instantiation 'std::shared_ptr<CXSphereRenderObject> std::make_shared<CXSphereRenderObject,Vec3,int>(Vec3 &&,int &&)' being compiled
+  CXBitMap.cpp
+  CXRMRenderer.cpp
+  Generating Code...
   TestingCPP.vcxproj -> C:\Users\alienware\source\repos\TestingCPP\bin\Win32\Debug\BloopRenderer.exe

@@ -3,6 +3,7 @@
 #include "CXColor.h"
 #include <fstream>
 #include <vector>
+//#include <array>
 
 class CXBitMap
 {

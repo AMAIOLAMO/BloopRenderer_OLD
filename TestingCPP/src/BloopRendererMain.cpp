@@ -40,11 +40,18 @@ void DoRenderSimpleScene(const Logger& logger)
 
 	CXRMRenderer renderer(renderScene, camera);
 
-	CXBitMap renderedBitmap(500, 500);
+	logger.Log("Instantiated renderer :D");
+
+	CXBitMap renderedBitmap(3000, 3000);
+
+	logger.Log("Instantiated bit map");
+	logger.Log("Rendering to bit map :D");
 
 	renderer.RenderToBitmap(renderedBitmap);
 
+	logger.Log("Exporting to bit map :D");
+
 	renderedBitmap.ExportTo(TARGET_IMG_PATH);
 
-	logger << "Finished rendering from the renderer" << Logger::endl;
+	logger.Log("Finished rendering from the renderer");
 }
