@@ -1,4 +1,5 @@
 #include "CXRenderScene.h"
+#include <iostream>
 
 //instantiates the render scene with render objects
 CXRenderScene::CXRenderScene() :

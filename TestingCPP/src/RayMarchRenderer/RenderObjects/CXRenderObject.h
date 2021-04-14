@@ -14,7 +14,7 @@ public:
 public:
 	//Quaternion rotation; // -> NEVER GONNA TOUCH THIS LOL (might)
 
-	CXRenderObject(Vec3 _position);
+	CXRenderObject(const Vec3& _position);
 
 	/// <summary>
 	/// Deep copies from another renderer object

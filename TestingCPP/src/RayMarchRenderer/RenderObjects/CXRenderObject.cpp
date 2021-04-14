@@ -1,6 +1,6 @@
 #include "CXRenderObject.h"
 
-CXRenderObject::CXRenderObject(Vec3 _position) :
+CXRenderObject::CXRenderObject(const Vec3& _position) :
 	position(_position) {}
 
 CXRenderObject::CXRenderObject(const CXRenderObject& other) :

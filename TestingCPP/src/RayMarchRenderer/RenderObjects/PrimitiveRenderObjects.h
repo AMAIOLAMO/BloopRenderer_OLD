@@ -8,7 +8,7 @@ public:
 	float radius;
 
 public:
-	CXSphereRenderObject(Vec3 _position, float _radius);
+	CXSphereRenderObject(const Vec3& _position, float _radius);
 
 	float GetSurfDistance(const Vec3& fromPos) const override;
 };
