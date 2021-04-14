@@ -18,7 +18,7 @@ CXRenderScene& CXRenderScene::Add(const std::shared_ptr<CXRenderObject>& rendObj
 }
 
 CXRayMarchInfo CXRenderScene::RayMarch(const Vec3& rayOrigin, const Vec3& rayDirection,
-	size_t maxMarchIteration, float minSurfaceDistance, float farViewDistance) const
+	unsigned int maxMarchIteration, float minSurfaceDistance, float farViewDistance) const
 {
 	float distanceFromOriginMarched = .0f;
 
@@ -28,7 +28,7 @@ CXRayMarchInfo CXRenderScene::RayMarch(const Vec3& rayOrigin, const Vec3& rayDir
 
 	std::shared_ptr<CXRenderObject> targetRendObj_sharePtr = nullptr;
 
-	for (std::size_t i = 0; i < maxMarchIteration; i++)
+	for (unsigned int i = 0; i < maxMarchIteration; i++)
 	{
 		targetHitPoint = rayOrigin + rayDirection * distanceFromOriginMarched;
 

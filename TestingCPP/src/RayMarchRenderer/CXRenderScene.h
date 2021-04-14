@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include <memory>
+//#include <memory>
 
 #include "CXRayMarchInfo.h"
 #include "RenderObjects/CXRenderObject.h"
@@ -36,7 +36,7 @@ public:
 	CXRenderScene& Add(const std::shared_ptr<CXRenderObject>& rendObject_sharePtr);
 
 	CXRayMarchInfo RayMarch(const Vec3& rayOrigin, const Vec3& rayDirection,
-		size_t maxMarchIteration, float minSurfaceDistance, float farViewDistance) const;
+		unsigned int maxMarchIteration, float minSurfaceDistance, float farViewDistance) const;
 
 	/// <summary>
 	/// Tries to get the closest distance from a specified from point to the entire scene
