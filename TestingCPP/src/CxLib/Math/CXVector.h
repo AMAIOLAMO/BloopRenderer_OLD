@@ -14,6 +14,9 @@ public:
 		left, right, up, down, forward, backward
 	};
 
+	/// <summary>
+	/// Creates an empty vector with default value of 0, 0, 0
+	/// </summary>
 	Vec3();
 
 	Vec3(float _x, float _y, float _z);

@@ -24,15 +24,10 @@ public:
 	/// <summary>
 	/// Get's the distance between the target position to the specified from Position
 	/// </summary>
-	virtual float GetSurfDistance(Vec3 fromPos) const;
-
-	/// <summary>
-	/// Get's the distance between the target position to the specified from position
-	/// </summary>
-	virtual Vec3 GetSurfDistance_Vec(Vec3 fromPos) const;
+	virtual float GetSurfDistance(Vec3 fromPos) const = 0;
 
 	/// <summary>
 	/// Get's the normal from the target point with the target precision (default as .01f)
 	/// </summary>
-	virtual Vec3 GetNormal(Vec3 pointOnSurface) const;
+	virtual Vec3 GetNormal(const Vec3& pointOnSurface) const;
 };

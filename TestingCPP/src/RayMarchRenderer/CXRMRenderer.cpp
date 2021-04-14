@@ -4,7 +4,7 @@ static const float DEFAULT_FAR_VIEW_DISTANCE = 100.0f;
 
 //private
 
-CXRayMarchInfo CXRMRenderer::RayMarchFromCam(Vec3 rayDirection) const
+CXRayMarchInfo CXRMRenderer::RayMarchFromCam(const Vec3& rayDirection) const
 {
 	return _renderScene.RayMarch(_camera.position, rayDirection,
 		maxMarchingIteration, minSurfaceDistance, _camera.farViewDistance);
@@ -51,7 +51,7 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 			{
 				/*finalColor.SetColor(rayMarchInfo.hitPoint.x, rayMarchInfo.hitPoint.y, rayMarchInfo.hitPoint.z);*/
 
-				Vec3 normal = rayMarchInfo.renderObject_ptr->GetNormal(rayMarchInfo.hitPoint);
+				Vec3 normal = rayMarchInfo.rendObject_sharePtr->GetNormal(rayMarchInfo.hitPoint);
 
 				finalColor.SetColor(normal.x, normal.y, normal.z);
 			}

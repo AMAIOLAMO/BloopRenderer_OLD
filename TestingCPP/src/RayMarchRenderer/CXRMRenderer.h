@@ -20,7 +20,7 @@ public:
 	float minSurfaceDistance = .01f; //the minimum distance for the ray marching sphere to be :D
 
 private:
-	CXRayMarchInfo RayMarchFromCam(Vec3 rayDirection) const;
+	CXRayMarchInfo RayMarchFromCam(const Vec3& rayDirection) const;
 
 public:
 	/// <summary>

@@ -1,2 +1,8 @@
-﻿  BloopRendererMain.cpp
-  TestingCPP.vcxproj -> C:\Users\alienware\source\repos\TestingCPP\bin\Win32\Debug\BloopRenderer.exe
+﻿  CXRayMarchInfo.cpp
+C:\Users\alienware\source\repos\TestingCPP\TestingCPP\src\RayMarchRenderer\CXRenderScene.h(38,17): error C3646: “RayMarch”: 未知重写说明符
+C:\Users\alienware\source\repos\TestingCPP\TestingCPP\src\RayMarchRenderer\CXRenderScene.h(38,25): error C2059: 语法错误:“(”
+C:\Users\alienware\source\repos\TestingCPP\TestingCPP\src\RayMarchRenderer\CXRenderScene.h(39,83): error C2238: 意外的标记位于“;”之前
+  CXRenderScene.cpp
+  CXRMRenderer.cpp
+  PrimitiveRenderObjects.cpp
+  正在生成代码...
