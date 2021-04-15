@@ -20,6 +20,9 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\1
               _Ty=CXSphereRenderObject
           ]
 C:\Users\alienware\source\repos\TestingCPP\TestingCPP\src\BloopRendererMain.cpp(48): message : see reference to function template instantiation 'std::shared_ptr<CXSphereRenderObject> std::make_shared<CXSphereRenderObject,Vec3,CXColor,int>(Vec3 &&,CXColor &&,int &&)' being compiled
+  CXBitMap.cpp
+  CXColor.cpp
+  CXMath.cpp
   CXRMRenderer.cpp
   CXRayMarchInfo.cpp
   CXRenderScene.cpp

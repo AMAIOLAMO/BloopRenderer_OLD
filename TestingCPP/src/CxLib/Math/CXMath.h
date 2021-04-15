@@ -32,4 +32,14 @@ public:
 	/// get's the maximum between two values
 	/// </summary>
 	static float Max(const float& a, const float& b);
+
+	/// <summary>
+	/// Limit the value under a certain threshold
+	/// </summary>
+	static float LimitMax(const float& value, const float& threshold);
+
+	/// <summary>
+	/// Limit the value above a certain threshold
+	/// </summary>
+	static float LimitMin(const float& value, const float& threshold);
 };

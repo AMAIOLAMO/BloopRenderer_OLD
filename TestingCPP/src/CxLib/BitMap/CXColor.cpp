@@ -41,6 +41,18 @@ CXColor CXColor::FromGreyScale(float greyscale)
 	return CXColor(greyscale, greyscale, greyscale);
 }
 
+CXColor CXColor::operator*(const float& intensity) const
+{
+	CXColor result(*this);
+	result *= intensity;
+	return result;
+}
+
+void CXColor::operator*=(const float& grayScale)
+{
+	SetColor(r * grayScale, g * grayScale, b * grayScale);
+}
+
 // -------------------------- UCXCOLOR -------------------------- //
 
 UCXColor::UCXColor()

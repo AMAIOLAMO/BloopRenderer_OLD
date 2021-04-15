@@ -31,6 +31,15 @@ public:
 	unsigned char* ToUnsignedCharBlock();
 
 	static CXColor FromGreyScale(float greyscale);
+
+#pragma region operators
+
+	CXColor operator*(const float& intensity) const;
+
+	void operator*=(const float& intensity);
+
+#pragma endregion
+
 };
 
 /// <summary>

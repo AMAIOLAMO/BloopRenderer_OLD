@@ -77,22 +77,18 @@ CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 		CXRayMarchInfo rayMarchFromPointInfo =
 			RayMarchFrom(rayMarchFromCamInfo.hitPoint + fakeLightDir_normalized, fakeLightDir_normalized);
 
-		//the light grey scale (between 0 and 1)
-		float lightIntensity = CXMath::Clamp01(Vec3::Dot(fakeLightDir_normalized, normal));
+		float lightIntensity;
 
-		//has shadow
+		lightIntensity = CXMath::Clamp01(Vec3::Dot(fakeLightDir_normalized, normal));
+
+		//has shadow then we make light intensity low
 		if (rayMarchFromPointInfo.isHit)
 		{
-			//then we remove from the light :D
-			//we limit at max of 1 so when it's closer to the ball it's more darker
-
-			//this will go over 1
-			//grayScale = rayMarchFromPointInfo.hitDistance;
-
-			//grayScale -=  1.0f - (std::min(rayMarchFromPointInfo.hitDistance, 2.0f) / 2.0f);
+			//we max it so we don't get Under 0
+			lightIntensity = CXMath::LimitMin(lightIntensity - shadowRemoveAmount, 0.0f);
 		}
 
-		finalColor = materialColor;
+		finalColor = materialColor * lightIntensity;
 	}
 	else
 	{

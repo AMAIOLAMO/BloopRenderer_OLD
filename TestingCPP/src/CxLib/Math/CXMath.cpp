@@ -29,3 +29,13 @@ float CXMath::Max(const float& a, const float& b)
 {
 	return b > a ? b : a;
 }
+
+float CXMath::LimitMax(const float& value, const float& threshold)
+{
+	return Min(value, threshold);
+}
+
+float CXMath::LimitMin(const float& value, const float& threshold)
+{
+	return Max(value, threshold);
+}
