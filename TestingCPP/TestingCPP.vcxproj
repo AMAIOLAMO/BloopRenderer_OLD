@@ -154,6 +154,7 @@
     <ClCompile Include="src\CxLib\Math\CXVector.cpp" />
     <ClCompile Include="src\CxLib\Logger\Logger.cpp" />
     <ClCompile Include="src\BloopRendererMain.cpp" />
+    <ClCompile Include="src\CxLib\ShaderUtils\CXShaderUtils.cpp" />
     <ClCompile Include="src\RayMarchRenderer\CXCamera.cpp" />
     <ClCompile Include="src\RayMarchRenderer\CXRayMarchInfo.cpp" />
     <ClCompile Include="src\RayMarchRenderer\CXRenderScene.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="src\RayMarchRenderer\RenderObjects\PrimitiveRenderObjects.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CxLib\ShaderUtils\CXShaderUtils.h" />
     <ClInclude Include="src\RayMarchRenderer\CXCamera.h" />
     <ClInclude Include="src\RayMarchRenderer\CXRayMarchInfo.h" />
     <ClInclude Include="src\RayMarchRenderer\CXRMRenderer.h" />

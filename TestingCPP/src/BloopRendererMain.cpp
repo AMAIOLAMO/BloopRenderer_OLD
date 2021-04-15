@@ -42,7 +42,7 @@ int main()
 void DoRenderSimpleScene(const Logger& logger)
 {
 	CXRenderScene renderScene;
-	CXCamera camera(Vec3(0, 1, 0), FAR_VIEW_DISTANCE); // we don't care about where it is looking at rn it's fixed :D
+	CXCamera camera(Vec3(0, 1, -1), FAR_VIEW_DISTANCE); // we don't care about where it is looking at rn it's fixed :D
 
 	auto redSphere = CXSphereRenderObject(Vec3(-1, 1, 5), CXColor(1, 0, 0), 1);
 	auto greenSphere = CXSphereRenderObject(Vec3(1, 1, 5), CXColor(0, 1, 0), 1);
@@ -57,7 +57,7 @@ void DoRenderSimpleScene(const Logger& logger)
 
 	logger.Log("Instantiated renderer :D");
 
-	CXBitMap renderedBitmap(500, 500);
+	CXBitMap renderedBitmap(1000, 1000);
 
 	logger.Log("Instantiated bit map");
 	logger.Log("Rendering to bit map :D");
