@@ -1,32 +1,4 @@
 ﻿  BloopRendererMain.cpp
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\include\xutility(138,73): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
-          with
-          [
-              _Ty=int
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\include\memory(2186): message : see reference to function template instantiation 'void std::_Construct_in_place<_Ty,Vec3,CXColor,int>(_Ty &,Vec3 &&,CXColor &&,int &&) noexcept(false)' being compiled
-          with
-          [
-              _Ty=CXSphereRenderObject
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\include\memory(2906): message : see reference to function template instantiation 'std::_Ref_count_obj2<_Ty>::_Ref_count_obj2<Vec3,CXColor,int>(Vec3 &&,CXColor &&,int &&)' being compiled
-          with
-          [
-              _Ty=CXSphereRenderObject
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29910\include\memory(2907): message : see reference to function template instantiation 'std::_Ref_count_obj2<_Ty>::_Ref_count_obj2<Vec3,CXColor,int>(Vec3 &&,CXColor &&,int &&)' being compiled
-          with
-          [
-              _Ty=CXSphereRenderObject
-          ]
-C:\Users\alienware\source\repos\TestingCPP\TestingCPP\src\BloopRendererMain.cpp(48): message : see reference to function template instantiation 'std::shared_ptr<CXSphereRenderObject> std::make_shared<CXSphereRenderObject,Vec3,CXColor,int>(Vec3 &&,CXColor &&,int &&)' being compiled
-  CXBitMap.cpp
-  CXColor.cpp
-  CXMath.cpp
   CXRMRenderer.cpp
-  CXRayMarchInfo.cpp
-  CXRenderScene.cpp
-  CXRenderObject.cpp
-  PrimitiveRenderObjects.cpp
   Generating Code...
   TestingCPP.vcxproj -> C:\Users\alienware\source\repos\TestingCPP\bin\Win32\Debug\BloopRenderer.exe

@@ -74,7 +74,7 @@ CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 			rayMarchFromCamInfo.rendObject_sharePtr->GetMaterialColor(rayMarchFromCamInfo.hitPoint);
 
 		//this is for checking shadows
-		CXRayMarchInfo rayMarchFromPointInfo =
+		CXRayMarchInfo rayMarchFromPointToLightInfo =
 			RayMarchFrom(rayMarchFromCamInfo.hitPoint + fakeLightDir_normalized, fakeLightDir_normalized);
 
 		float lightIntensity;
@@ -82,10 +82,12 @@ CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 		lightIntensity = CXMath::Clamp01(Vec3::Dot(fakeLightDir_normalized, normal));
 
 		//has shadow then we make light intensity low
-		if (rayMarchFromPointInfo.isHit)
+		if (rayMarchFromPointToLightInfo.isHit)
 		{
 			//we max it so we don't get Under 0
-			lightIntensity = CXMath::LimitMin(lightIntensity - shadowRemoveAmount, 0.0f);
+			lightIntensity = CXMath::LimitMin(lightIntensity -
+				(shadowRemoveAmount * (1.0f - rayMarchFromPointToLightInfo.hitDistance)),
+				0.0f);
 		}
 
 		finalColor = materialColor * lightIntensity;
