@@ -10,6 +10,9 @@ public:
 public:
 	CXSphereRenderObject(const Vec3& _position, const CXColor& _baseColor, float _radius);
 
+	CXSphereRenderObject(const Vec3& _position, const CXColor& _baseColor,
+		CXMaterial*& _material_Ptr, float _radius);
+
 	float GetSurfDistance(const Vec3& fromPos) const override;
 };
 

@@ -5,7 +5,7 @@
 #include "CXRenderScene.h"
 #include "../CxLib/Math/CXMath.h"
 #include "../CxLib/BitMap/CXBitMap.h"
-
+#include "../RayMarchRenderer/RenderObjects/CXMaterial.h"
 
 //This is where receives a scene and ray marches
 

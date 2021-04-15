@@ -5,9 +5,9 @@
 #include <Windows.h>
 
 /// <summary>
-/// A simple logger that helps you log stuff pretty quick and easy
+/// A simple Console helper that helps with all the console stuff
 /// </summary>
-class Logger
+class Console
 {
 private:
 	HANDLE hndConsole;
@@ -19,7 +19,7 @@ public:
 	static const char endl = '\n';
 
 public:
-	Logger();
+	Console();
 
 	/// <summary>
 	/// Logs a messages to the console
@@ -46,6 +46,11 @@ public:
 	}
 
 	/// <summary>
+	/// Changes the console's title
+	/// </summary>
+	bool ChangeConsoleTitle(const std::wstring& titleName);
+
+	/// <summary>
 	/// Changes the Console's Color
 	/// Returns if failed or not
 	/// </summary>
@@ -57,7 +62,7 @@ public:
 	/// Raw logs to the console
 	/// </summary>
 	template <typename T>
-	const Logger& operator<<(const T& message) const
+	const Console& operator<<(const T& message) const
 	{
 		std::cout << message;
 		return *this;

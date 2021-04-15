@@ -1,6 +1,10 @@
 #pragma once
 
 #include <math.h>
+#include <memory>
+
+class CXMaterial;
+
 #include "../../CxLib/Math/CXVector.h"
 #include "../../CxLib/BitMap/CXColor.h"
 
@@ -12,16 +16,19 @@ class CXRenderObject
 public:
 	Vec3 position;
 	CXColor baseColor;
+	CXMaterial* material_ptr;
 
 public:
-	//Quaternion rotation; // -> NEVER GONNA TOUCH THIS LOL (might)
-
 	CXRenderObject(const Vec3& _position, const CXColor& _baseColor);
+
+	CXRenderObject(const Vec3& _position, const CXColor& _baseColor, CXMaterial*& _material_Ptr);
 
 	/// <summary>
 	/// Deep copies from another renderer object
 	/// </summary>
 	CXRenderObject(const CXRenderObject& other);
+
+	~CXRenderObject();
 
 	/// <summary>
 	/// Get's the distance between the target position to the specified from Position

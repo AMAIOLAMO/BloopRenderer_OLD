@@ -1,10 +1,22 @@
 #include "CXRenderObject.h"
+#include "CXMaterial.h"
 
 CXRenderObject::CXRenderObject(const Vec3& _position, const CXColor& _baseColor) :
-	position(_position), baseColor(_baseColor) {}
+	position(_position), baseColor(_baseColor), material_ptr(nullptr) {}
+
+CXRenderObject::CXRenderObject(const Vec3& _position, const CXColor& _baseColor,
+	CXMaterial*& _material_Ptr) :
+	position(_position), baseColor(_baseColor), material_ptr(_material_Ptr) {}
 
 CXRenderObject::CXRenderObject(const CXRenderObject& other) :
-	position(other.position), baseColor(other.baseColor) {}
+	position(other.position), baseColor(other.baseColor), material_ptr(other.material_ptr) {}
+
+CXRenderObject::~CXRenderObject()
+{
+	//if ptr exists then delete
+	if (material_ptr)
+		delete material_ptr;
+}
 
 static const float Epsilon = 1e-3f;
 static const float TwoEpsilon = Epsilon * 2.0f;

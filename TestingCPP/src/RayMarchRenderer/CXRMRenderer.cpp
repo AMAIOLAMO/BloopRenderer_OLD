@@ -47,13 +47,14 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 	}
 }
 
-//this is where you write the shader
 CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 {
-	float uv_x = (float)x / width,
+	float uv_x = (float)x / height,
 		uv_y = (float)y / height;
 
-	float camUV_x = uv_x - .5f, camUV_y = uv_y - .5f;
+	float widthCenterRatio = .5f * (float)width / height;
+
+	float camUV_x = uv_x - widthCenterRatio, camUV_y = uv_y - widthCenterRatio;
 
 	static const float shadowRemoveAmount = .7f;
 
@@ -68,6 +69,14 @@ CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 
 	if (rayMarchFromCamInfo.isHit)
 	{
+		//if ptr exists
+		if (rayMarchFromCamInfo.rendObject_sharePtr->material_ptr)
+		{
+			finalColor = rayMarchFromCamInfo.rendObject_sharePtr->
+				material_ptr->OnPixel(x, y, width, height, _renderScene);
+		}
+		
+#if 0
 		Vec3 normal = rayMarchFromCamInfo.rendObject_sharePtr->GetNormal(rayMarchFromCamInfo.hitPoint);
 
 		CXColor materialColor =
@@ -91,6 +100,7 @@ CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 		}
 
 		finalColor = materialColor * lightIntensity;
+#endif
 	}
 	else
 	{

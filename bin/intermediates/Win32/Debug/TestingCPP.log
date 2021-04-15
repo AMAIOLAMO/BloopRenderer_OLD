@@ -1,15 +1,2 @@
-﻿  CXBitMap.cpp
-  CXColor.cpp
-  CXMath.cpp
-  CXVector.cpp
-  Logger.cpp
-  BloopRendererMain.cpp
-  CXShaderUtils.cpp
-  CXCamera.cpp
-  CXRayMarchInfo.cpp
-  CXRenderScene.cpp
-  CXRMRenderer.cpp
-  CXRenderObject.cpp
-  PrimitiveRenderObjects.cpp
-  Generating Code...
+﻿  CXRenderObject.cpp
   TestingCPP.vcxproj -> C:\Users\alienware\source\repos\TestingCPP\bin\Win32\Debug\BloopRenderer.exe

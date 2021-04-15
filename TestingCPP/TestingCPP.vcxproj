@@ -159,6 +159,7 @@
     <ClCompile Include="src\RayMarchRenderer\CXRayMarchInfo.cpp" />
     <ClCompile Include="src\RayMarchRenderer\CXRenderScene.cpp" />
     <ClCompile Include="src\RayMarchRenderer\CXRMRenderer.cpp" />
+    <ClCompile Include="src\RayMarchRenderer\RenderObjects\CXMaterial.cpp" />
     <ClCompile Include="src\RayMarchRenderer\RenderObjects\CXRenderObject.cpp" />
     <ClCompile Include="src\RayMarchRenderer\RenderObjects\PrimitiveRenderObjects.cpp" />
   </ItemGroup>
@@ -173,6 +174,7 @@
     <ClInclude Include="src\CxLib\Math\CXVector.h" />
     <ClInclude Include="src\CxLib\Logger\Logger.h" />
     <ClInclude Include="src\RayMarchRenderer\CXRenderScene.h" />
+    <ClInclude Include="src\RayMarchRenderer\RenderObjects\CXMaterial.h" />
     <ClInclude Include="src\RayMarchRenderer\RenderObjects\CXRenderObject.h" />
     <ClInclude Include="src\RayMarchRenderer\RenderObjects\PrimitiveRenderObjects.h" />
   </ItemGroup>
