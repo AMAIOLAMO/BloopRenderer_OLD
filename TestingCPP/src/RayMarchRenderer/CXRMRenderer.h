@@ -1,7 +1,10 @@
 #pragma once
-#include "CXRenderScene.h"
-#include "../CxLib/BitMap/CXBitMap.h"
+#include <math.h>
+
 #include "CXCamera.h"
+#include "CXRenderScene.h"
+#include "../CxLib/Math/CXMath.h"
+#include "../CxLib/BitMap/CXBitMap.h"
 
 
 //This is where receives a scene and ray marches
@@ -20,8 +23,13 @@ public:
 	float minSurfaceDistance = .01f; //the minimum distance for the ray marching sphere to be :D
 
 private:
+	/// <summary>
+	/// Marching from one direction
+	/// </summary>
 	CXRayMarchInfo RayMarchFrom(const Vec3& rayOrigin, const Vec3& rayDirection) const;
 	CXRayMarchInfo RayMarchFromCam(const Vec3& rayDirection) const;
+
+	CXColor OnPixelLoop(int x, int y, int width, int height) const;
 
 public:
 	/// <summary>

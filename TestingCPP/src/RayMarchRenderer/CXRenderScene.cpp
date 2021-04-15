@@ -28,7 +28,10 @@ CXRayMarchInfo CXRenderScene::RayMarchTo(const Vec3& rayOrigin, const Vec3& rayD
 
 	std::shared_ptr<CXRenderObject> targetRendObj_sharePtr = nullptr;
 
-	for (unsigned int i = 0; i < maxMarchIteration; i++)
+	//the iteration passed
+	unsigned int marchIterationPassed;
+
+	for (marchIterationPassed = 0; marchIterationPassed < maxMarchIteration; marchIterationPassed++)
 	{
 		targetHitPoint = rayOrigin + rayDirection * distanceFromOriginMarched;
 
@@ -39,7 +42,6 @@ CXRayMarchInfo CXRenderScene::RayMarchTo(const Vec3& rayOrigin, const Vec3& rayD
 			continue;
 		//else we got a distance with a marched point and the target render object
 
-		//float closestSurfDistInSceneFromMarchedPoint = GetClosestDistance(pointMarchedTo);
 		distanceFromOriginMarched += closestSurfDistInSceneFromMarchedPoint;
 
 		if (closestSurfDistInSceneFromMarchedPoint < minSurfaceDistance) //is hit :D (raymarch circle so small)
@@ -52,7 +54,7 @@ CXRayMarchInfo CXRenderScene::RayMarchTo(const Vec3& rayOrigin, const Vec3& rayD
 			break;
 	}
 
-	return CXRayMarchInfo(targetHitPoint, isHit, distanceFromOriginMarched, targetRendObj_sharePtr);
+	return CXRayMarchInfo(targetHitPoint, marchIterationPassed, isHit, distanceFromOriginMarched, targetRendObj_sharePtr);
 }
 
 bool CXRenderScene::TryGetClosestDistance(const Vec3& fromPoint,

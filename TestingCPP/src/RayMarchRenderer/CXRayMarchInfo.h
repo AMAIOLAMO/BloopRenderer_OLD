@@ -14,6 +14,7 @@ public:
 	const Vec3 hitPoint;
 	const bool isHit;
 	const float hitDistance;
+	const unsigned int marchCount;
 	const std::shared_ptr<CXRenderObject> rendObject_sharePtr;
 
 	CXRayMarchInfo() = delete;
@@ -23,7 +24,7 @@ public:
 	/// <summary>
 	/// IF YOU ARE SEEING THIS, YOU AREN'T MEANT TO CREATE THIS UNLESS YOU KNOW WHAT U ARE DOING :D
 	/// </summary>
-	CXRayMarchInfo(const Vec3& _hitPoint, bool _isHit, float _hitDistance,
+	CXRayMarchInfo(const Vec3& _hitPoint, const unsigned int& _marchCount, const bool& _isHit, const float& _hitDistance,
 		const std::shared_ptr<CXRenderObject>& _rendObject_sharePtr);
 
 	/// <summary>

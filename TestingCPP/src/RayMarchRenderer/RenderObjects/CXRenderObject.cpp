@@ -1,13 +1,18 @@
 #include "CXRenderObject.h"
 
-CXRenderObject::CXRenderObject(const Vec3& _position) :
-	position(_position) {}
+CXRenderObject::CXRenderObject(const Vec3& _position, const CXColor& _baseColor) :
+	position(_position), baseColor(_baseColor) {}
 
 CXRenderObject::CXRenderObject(const CXRenderObject& other) :
-	position(other.position) {}
+	position(other.position), baseColor(other.baseColor) {}
 
 static const float Epsilon = 1e-3f;
 static const float TwoEpsilon = Epsilon * 2.0f;
+
+CXColor CXRenderObject::GetMaterialColor(const Vec3& pointOnSurface) const
+{
+	return baseColor;
+}
 
 //stole from Gary (thx Gary :D)
 Vec3 CXRenderObject::GetNormal(const Vec3& pointOnSurface) const

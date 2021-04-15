@@ -8,7 +8,7 @@ public:
 	float radius;
 
 public:
-	CXSphereRenderObject(const Vec3& _position, float _radius);
+	CXSphereRenderObject(const Vec3& _position, const CXColor& _baseColor, float _radius);
 
 	float GetSurfDistance(const Vec3& fromPos) const override;
 };
@@ -23,7 +23,7 @@ class CXInfPlaneRenderObject : public CXRenderObject
 public:
 
 public:
-	CXInfPlaneRenderObject(const Vec3& _position);
+	CXInfPlaneRenderObject(const Vec3& _position, const CXColor& _baseColor);
 
 	float GetSurfDistance(const Vec3& fromPos) const override;
 

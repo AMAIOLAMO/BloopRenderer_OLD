@@ -6,20 +6,30 @@ public:
 	/// <summary>
 	/// Linear interpolates between two values
 	/// </summary>
-	static float Lerp(float a, float b, float t);
+	static float Lerp(const float& a, const float& b, const float& t);
 
 	/// <summary>
 	/// Linear interpolates between two values (precise)
 	/// </summary>
-	static float PrecLerp(float a, float b, float t);
+	static float PrecLerp(const float& a, const float& b, const float& t);
 	
 	/// <summary>
 	/// clamps the value between min and max
 	/// </summary>
-	static float Clamp(float value, float min, float max);
+	static float Clamp(const float& value, const float& min, const float& max);
 
 	/// <summary>
 	/// clamps the value between 0 and 1
 	/// </summary>
-	static float Clamp01(float value);
+	static float Clamp01(const float& value);
+
+	/// <summary>
+	/// get's the minimum between two values
+	/// </summary>
+	static float Min(const float& a, const float& b);
+
+	/// <summary>
+	/// get's the maximum between two values
+	/// </summary>
+	static float Max(const float& a, const float& b);
 };

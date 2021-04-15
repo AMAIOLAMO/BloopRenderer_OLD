@@ -2,8 +2,8 @@
 
 // -------------------------- SPHERE -------------------------- //
 
-CXSphereRenderObject::CXSphereRenderObject(const Vec3& _position, float _radius) :
-	CXRenderObject(_position), radius(_radius) {}
+CXSphereRenderObject::CXSphereRenderObject(const Vec3& _position, const CXColor& _baseColor, float _radius) :
+	CXRenderObject(_position, _baseColor), radius(_radius) {}
 
 float CXSphereRenderObject::GetSurfDistance(const Vec3& fromPos) const
 {
@@ -12,7 +12,8 @@ float CXSphereRenderObject::GetSurfDistance(const Vec3& fromPos) const
 
 // -------------------------- PLANE -------------------------- //
 
-CXInfPlaneRenderObject::CXInfPlaneRenderObject(const Vec3& _position) : CXRenderObject(_position) {}
+CXInfPlaneRenderObject::CXInfPlaneRenderObject(const Vec3& _position, const CXColor& _baseColor) :
+	CXRenderObject(_position, _baseColor) {}
 
 float CXInfPlaneRenderObject::GetSurfDistance(const Vec3& fromPos) const
 {

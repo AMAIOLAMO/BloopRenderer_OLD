@@ -1,6 +1,7 @@
 ﻿#include <random>
 #include <memory>
 #include <iostream>
+#include <chrono>
 
 #include "CxLib/Logger/Logger.h"
 #include "CxLib/Math/CXVector.h"
@@ -23,7 +24,17 @@ int main()
 {
 	Logger myLogger;
 
+	std::chrono::steady_clock clock;
+
+	auto startClock = clock.now();
+
 	DoRenderSimpleScene(myLogger);
+
+	auto endClock = clock.now();
+
+	auto timeElapsed = static_cast<std::chrono::duration<double>>(endClock - startClock);
+
+	myLogger << "Total time of rendering: " << timeElapsed.count() << " seconds" << Logger::endl;
 
 	std::cin.get();
 }
@@ -34,15 +45,15 @@ void DoRenderSimpleScene(const Logger& logger)
 	CXCamera camera(Vec3(0, 1, 0), FAR_VIEW_DISTANCE); // we don't care about where it is looking at rn it's fixed :D
 
 	//we use make shared here because we store stuff here as a pointer to be safe and easy to access
-	renderScene.Add(std::make_shared<CXSphereRenderObject>(Vec3(0, 1, 5), 1))
-		.Add(std::make_shared<CXSphereRenderObject>(Vec3(1, 1, 5), 1))
-		.Add(std::make_shared<CXInfPlaneRenderObject>(Vec3(0, 0, 0)));
+	renderScene.Add(std::make_shared<CXSphereRenderObject>(Vec3(0, 1, 5), CXColor(1, 0, 0), 1))
+		.Add(std::make_shared<CXSphereRenderObject>(Vec3(1, 1, 5), CXColor(0, 1, 0), 1))
+		.Add(std::make_shared<CXInfPlaneRenderObject>(Vec3(0, 0, 0), CXColor(0, 0, 1)));
 
 	CXRMRenderer renderer(renderScene, camera);
 
 	logger.Log("Instantiated renderer :D");
 
-	CXBitMap renderedBitmap(3000, 3000);
+	CXBitMap renderedBitmap(500, 500);
 
 	logger.Log("Instantiated bit map");
 	logger.Log("Rendering to bit map :D");
