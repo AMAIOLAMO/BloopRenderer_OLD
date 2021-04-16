@@ -12,6 +12,7 @@
 #include "RayMarchRenderer/CXRMRenderer.h"
 #include "RayMarchRenderer/CXRenderScene.h"
 #include "RayMarchRenderer/RenderObjects/CXMaterial.h"
+#include "RayMarchRenderer/RenderObjects/PrimitiveMaterials.h"
 #include "RayMarchRenderer/RenderObjects/PrimitiveRenderObjects.h"
 
 
@@ -47,7 +48,9 @@ void DoRenderSimpleScene(Console& console)
 
 	/*auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(-1, 1, 5), 1), CXMaterial());*/
 
-	auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(0, 1, 5), 1.0f));
+	const CXMaterial* materialPtr = new CXPhongMaterial;
+
+	auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(0, 1, 5), 1.0f), materialPtr);
 
 	/*auto redSphere = CXSphereRenderBody(Vec3(-1, 1, 5), CXColor(1, 0, 0), matPtr, 1);
 	auto greenSphere = CXSphereRenderBody(Vec3(1, 1, 5), CXColor(0, 1, 0), 1);

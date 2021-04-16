@@ -60,9 +60,7 @@ CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 
 	float camUV_x = uv_x - centerX, camUV_y = uv_y - centerY;
 
-	static const float shadowRemoveAmount = .7f;
-
-	static const Vec3 fakeLightDir_normalized = Vec3::GetNormalized(Vec3(-.3f, 1, -.3f));
+	
 
 	Vec3 rayDirFromCam = _camera.GetRayDirection(camUV_x, camUV_y);
 
@@ -74,8 +72,9 @@ CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 
 	if (rayMarchFromCamInfo.isHit)
 	{
-#if 0
-		finalColor = rayMarchFromCamInfo.rendObject_sharePtr->material.OnPixel(x, y, width, height, _renderScene_ptr);
+#if 1
+		finalColor = rayMarchFromCamInfo.rendObject_sharePtr->
+			GetMaterial()->OnPixel(x, y, width, height, _renderScene_ptr, rayMarchFromCamInfo);
 
 		//if ptr exists
 		/*if (rayMarchFromCamInfo.rendObject_sharePtr-)
@@ -85,7 +84,7 @@ CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 		}*/
 		
 #endif
-#if 1
+#if 0
 		Vec3 normal = rayMarchFromCamInfo.rendObject_sharePtr->renderBody_sharePtr->GetNormal(rayMarchFromCamInfo.hitPoint);
 
 		CXColor materialColor = CXColor(1, 1, 1);

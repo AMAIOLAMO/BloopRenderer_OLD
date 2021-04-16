@@ -60,6 +60,9 @@
     <ClCompile Include="src\RayMarchRenderer\RenderObjects\CXRenderBody.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\RayMarchRenderer\RenderObjects\PrimitiveMaterials.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CxLib\Logger\Logger.h">
@@ -102,6 +105,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\RayMarchRenderer\RenderObjects\CXRenderBody.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RayMarchRenderer\RenderObjects\PrimitiveMaterials.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

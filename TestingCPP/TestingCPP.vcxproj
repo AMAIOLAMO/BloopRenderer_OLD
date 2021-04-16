@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\RayMarchRenderer\RenderObjects\PrimitiveMaterials.cpp" />
     <ClCompile Include="src\CxLib\BitMap\CXBitMap.cpp" />
     <ClCompile Include="src\CxLib\BitMap\CXColor.cpp" />
     <ClCompile Include="src\CxLib\Math\CXMath.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="src\RayMarchRenderer\RenderObjects\PrimitiveRenderObjects.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\RayMarchRenderer\RenderObjects\PrimitiveMaterials.h" />
     <ClInclude Include="src\CxLib\ShaderUtils\CXShaderUtils.h" />
     <ClInclude Include="src\RayMarchRenderer\CXCamera.h" />
     <ClInclude Include="src\RayMarchRenderer\CXRayMarchInfo.h" />
