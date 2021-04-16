@@ -20,22 +20,22 @@ float CXMath::Clamp01(const float& value)
 	return Clamp(value, 0.0f, 1.0f);
 }
 
-float CXMath::Min(const float& a, const float& b)
-{
-	return b < a ? b : a;
-}
+//float CXMath::Min(const float& a, const float& b)
+//{
+//	return b < a ? b : a;
+//}
 
-float CXMath::Max(const float& a, const float& b)
-{
-	return b > a ? b : a;
-}
+//float CXMath::Max(const float& a, const float& b)
+//{
+//	return b > a ? b : a;
+//}
 
-float CXMath::LimitMax(const float& value, const float& threshold)
-{
-	return Min(value, threshold);
-}
+//float CXMath::LimitMax(const float& value, const float& threshold)
+//{
+//	return Min(value, threshold);
+//}
 
-float CXMath::LimitMin(const float& value, const float& threshold)
-{
-	return Max(value, threshold);
-}
+//float CXMath::LimitMin(const float& value, const float& threshold)
+//{
+//	return Max(value, threshold);
+//}

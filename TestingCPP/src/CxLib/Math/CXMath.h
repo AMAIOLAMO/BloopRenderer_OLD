@@ -26,20 +26,36 @@ public:
 	/// <summary>
 	/// get's the minimum between two values
 	/// </summary>
-	static float Min(const float& a, const float& b);
+	template <typename T>
+	static float Min(const T& a, const T& b)
+	{
+		return b < a ? b : a;
+	}
 
 	/// <summary>
 	/// get's the maximum between two values
 	/// </summary>
-	static float Max(const float& a, const float& b);
+	template <typename T>
+	static float Max(const T& a, const T& b)
+	{
+		return b > a ? b : a;
+	}
 
 	/// <summary>
 	/// Limit the value under a certain threshold
 	/// </summary>
-	static float LimitMax(const float& value, const float& threshold);
+	template <typename T>
+	static float LimitMax(const T& value, const T& threshold)
+	{
+		return Min(value, threshold);
+	}
 
 	/// <summary>
 	/// Limit the value above a certain threshold
 	/// </summary>
-	static float LimitMin(const float& value, const float& threshold);
+	template <typename T>
+	static float LimitMin(const T& value, const T& threshold)
+	{
+		return Max(value, threshold);
+	}
 };

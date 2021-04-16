@@ -50,13 +50,13 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 
 CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 {
-	float resDiv = CXMath::Max(width, height);
+	float resDiv = CXMath::Max(static_cast<float>(width), static_cast<float>(height));
 
 	float uv_x = (float)x / resDiv,
 		uv_y = (float)y / resDiv;
 
-	float centerX = ((float)width / resDiv) / 2.0f,
-		centerY = ((float)height / resDiv) / 2.0f;
+	float centerX = (static_cast<float>(width) / resDiv) / 2.0f,
+		centerY = (static_cast<float>(height) / resDiv) / 2.0f;
 
 	float camUV_x = uv_x - centerX, camUV_y = uv_y - centerY;
 
