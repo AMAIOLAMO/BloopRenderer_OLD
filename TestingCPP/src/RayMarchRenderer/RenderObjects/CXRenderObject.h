@@ -12,6 +12,7 @@ class CXRenderObject
 {
 public:
 	/*CXMaterial material;*/
+	//a shared ptr that points to a render body
 	std::shared_ptr<CXRenderBody> renderBody_sharePtr;
 
 public:

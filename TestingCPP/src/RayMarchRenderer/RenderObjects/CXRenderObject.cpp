@@ -1,5 +1,7 @@
 #include "CXRenderObject.h"
 
+std::shared_ptr<CXRenderBody> renderBody_sharePtr;
+
 //CXRenderObject::CXRenderObject(const std::shared_ptr<CXRenderBody>& _renderBody_sharePtr, const CXMaterial& _material) :
 //	renderBody_sharePtr(_renderBody_sharePtr), material(_material) {}
 

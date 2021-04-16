@@ -15,7 +15,7 @@
 #include "RayMarchRenderer/RenderObjects/PrimitiveRenderObjects.h"
 
 
-void DoRenderSimpleScene(const Console&);
+void DoRenderSimpleScene(Console&);
 
 const char* TARGET_IMG_PATH = "C:/Users/alienware/Desktop/myImage.bmp";
 
@@ -40,14 +40,14 @@ int main()
 	std::cin.get();
 }
 
-void DoRenderSimpleScene(const Console& console)
+void DoRenderSimpleScene(Console& console)
 {
 	CXRenderScene* renderScene_ptr = new CXRenderScene;
-	CXCamera camera(Vec3(0, 1, -1), FAR_VIEW_DISTANCE); // we don't care about where it is looking at rn it's fixed :D
+	CXCamera camera(Vec3(0, 1, -1), FAR_VIEW_DISTANCE);
 
 	/*auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(-1, 1, 5), 1), CXMaterial());*/
 
-	auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(-1, 1, 5), 1.0f));
+	auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(0, 1, 5), 1.0f));
 
 	/*auto redSphere = CXSphereRenderBody(Vec3(-1, 1, 5), CXColor(1, 0, 0), matPtr, 1);
 	auto greenSphere = CXSphereRenderBody(Vec3(1, 1, 5), CXColor(0, 1, 0), 1);
@@ -62,6 +62,8 @@ void DoRenderSimpleScene(const Console& console)
 
 	CXRMRenderer renderer(renderScene_ptr, camera);
 
+	console.ChangeConsoleColor(Console::BLUE);
+
 	console.Log("Instantiated renderer :D");
 
 	CXBitMap renderedBitmap(200, 100);
@@ -74,6 +76,8 @@ void DoRenderSimpleScene(const Console& console)
 	console.Log("Exporting to bit map :D");
 
 	renderedBitmap.ExportTo(TARGET_IMG_PATH);
+
+	console.ChangeConsoleColor(Console::GREEN);
 
 	console.Log("-----------------------------------------------");
 

@@ -1,7 +1,7 @@
 #include "Logger.h"
 
 Console::Console() :
-	hndConsole(GetStdHandle(STD_OUTPUT_HANDLE)) {}
+	_hndConsole(GetStdHandle(STD_OUTPUT_HANDLE)) {}
 
 bool Console::ChangeConsoleTitle(const std::wstring& titleName)
 {
@@ -10,5 +10,5 @@ bool Console::ChangeConsoleTitle(const std::wstring& titleName)
 
 bool Console::ChangeConsoleColor(int colorCode)
 {
-	return SetConsoleTextAttribute(hndConsole, colorCode);
+	return SetConsoleTextAttribute(_hndConsole, colorCode);
 }
