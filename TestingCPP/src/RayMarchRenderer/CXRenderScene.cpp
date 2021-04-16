@@ -69,7 +69,7 @@ bool CXRenderScene::TryGetClosestDistance(const Vec3& fromPoint,
 
 	if (_rendObject_sharePtrs.size() == 1)
 	{
-		*out_distance = _rendObject_sharePtrs[0]->GetSurfDistance(fromPoint);
+		*out_distance = _rendObject_sharePtrs[0]->renderBody_sharePtr->GetSignedDistance(fromPoint);
 
 		//change content, BUT NOT POINTER
 		*out_renderObject_ptr = _rendObject_sharePtrs[0];
@@ -78,13 +78,13 @@ bool CXRenderScene::TryGetClosestDistance(const Vec3& fromPoint,
 
 	//else there are more than 1 rendering objects :D (at least 2)
 
-	float minDist = _rendObject_sharePtrs[0]->GetSurfDistance(fromPoint);
+	float minDist = _rendObject_sharePtrs[0]->renderBody_sharePtr->GetSignedDistance(fromPoint);
 	int targetIndex = 0;
 
 	//from the second (because we used the first one)
 	for (size_t i = 1; i < _rendObject_sharePtrs.size(); i++)
 	{
-		float currentDist = _rendObject_sharePtrs[i]->GetSurfDistance(fromPoint);
+		float currentDist = _rendObject_sharePtrs[i]->renderBody_sharePtr->GetSignedDistance(fromPoint);
 
 		//if current distance is smaller than the min distance, update :D
 		if (minDist > currentDist)

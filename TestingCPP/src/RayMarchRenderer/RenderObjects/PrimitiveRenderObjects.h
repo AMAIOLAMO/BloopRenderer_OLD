@@ -1,34 +1,28 @@
 #pragma once
 
-#include "CXRenderObject.h"
+#include "CXRenderBody.h"
 
-class CXSphereRenderObject : public CXRenderObject
+/// <summary>
+/// A simple sphere
+/// </summary>
+class CXSphereRenderBody : public CXRenderBody
 {
 public:
 	float radius;
 
 public:
-	CXSphereRenderObject(const Vec3& _position, const CXColor& _baseColor, float _radius);
+	CXSphereRenderBody(const Vec3& _position, const float& _radius);
 
-	CXSphereRenderObject(const Vec3& _position, const CXColor& _baseColor,
-		CXMaterial*& _material_Ptr, float _radius);
-
-	float GetSurfDistance(const Vec3& fromPos) const override;
+	float GetSignedDistance(const Vec3& fromPos) const override;
 };
-
 
 
 /// <summary>
 /// A plane that extends infinitely
 /// </summary>
-class CXInfPlaneRenderObject : public CXRenderObject
+class CXInfPlaneRenderBody : public CXRenderBody
 {
 public:
-
-public:
-	CXInfPlaneRenderObject(const Vec3& _position, const CXColor& _baseColor);
-
-	float GetSurfDistance(const Vec3& fromPos) const override;
-
-	/*Vec3 GetNormal(const Vec3& pointOnSurface) const override;*/
+	float GetSignedDistance(const Vec3& fromPos) const override;
+	Vec3 GetNormal(const Vec3& pointOnSurface) const override;
 };

@@ -8,11 +8,11 @@
 #include "CxLib/BitMap/CXBitMap.h"
 #include "CxLib/BitMap/CXColor.h"
 
-#include "RayMarchRenderer/CXRMRenderer.h"
-#include "RayMarchRenderer/RenderObjects/PrimitiveRenderObjects.h"
-#include "RayMarchRenderer/CXRenderScene.h"
 #include "RayMarchRenderer/CXCamera.h"
+#include "RayMarchRenderer/CXRMRenderer.h"
+#include "RayMarchRenderer/CXRenderScene.h"
 #include "RayMarchRenderer/RenderObjects/CXMaterial.h"
+#include "RayMarchRenderer/RenderObjects/PrimitiveRenderObjects.h"
 
 
 void DoRenderSimpleScene(const Console&);
@@ -42,23 +42,25 @@ int main()
 
 void DoRenderSimpleScene(const Console& console)
 {
-	CXRenderScene renderScene;
+	CXRenderScene* renderScene_ptr = new CXRenderScene;
 	CXCamera camera(Vec3(0, 1, -1), FAR_VIEW_DISTANCE); // we don't care about where it is looking at rn it's fixed :D
 
-	CXMaterial* matPtr = new CXMaterial();
+	/*auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(-1, 1, 5), 1), CXMaterial());*/
 
-	auto redSphere = CXSphereRenderObject(Vec3(-1, 1, 5), CXColor(1, 0, 0), matPtr, 1);
-	auto greenSphere = CXSphereRenderObject(Vec3(1, 1, 5), CXColor(0, 1, 0), 1);
-	auto bluePlane = CXInfPlaneRenderObject(Vec3(0, 0, 0), CXColor(0, 0, 1));
+	auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(-1, 1, 5), 1));
+
+	/*auto redSphere = CXSphereRenderBody(Vec3(-1, 1, 5), CXColor(1, 0, 0), matPtr, 1);
+	auto greenSphere = CXSphereRenderBody(Vec3(1, 1, 5), CXColor(0, 1, 0), 1);
+	auto bluePlane = CXInfPlaneRenderBody(Vec3(0, 0, 0), CXColor(0, 0, 1));*/
 
 	//redSphere.material_sharePtr = std::make_shared<CXMaterial>();
 
 	//we use make shared here because we store stuff here as a pointer to be safe and easy to access
-	renderScene.Add(std::make_shared<CXSphereRenderObject>(redSphere))
-		.Add(std::make_shared<CXSphereRenderObject>(greenSphere))
-		.Add(std::make_shared<CXInfPlaneRenderObject>(bluePlane));
+	renderScene_ptr->Add(std::make_shared<CXRenderObject>(redSphere));
+		/*.Add(std::make_shared<CXRenderObject>(greenSphere))
+		.Add(std::make_shared<CXRenderObject>(bluePlane));*/
 
-	CXRMRenderer renderer(renderScene, camera);
+	CXRMRenderer renderer(renderScene_ptr, camera);
 
 	console.Log("Instantiated renderer :D");
 

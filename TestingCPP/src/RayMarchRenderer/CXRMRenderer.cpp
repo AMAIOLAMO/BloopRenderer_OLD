@@ -6,7 +6,7 @@ static const float DEFAULT_FAR_VIEW_DISTANCE = 100.0f;
 
 CXRayMarchInfo CXRMRenderer::RayMarchFrom(const Vec3& rayOrigin, const Vec3& rayDirection) const
 {
-	return _renderScene.RayMarchTo(rayOrigin, rayDirection,
+	return _renderScene_ptr->RayMarchTo(rayOrigin, rayDirection,
 		maxMarchingIteration, minSurfaceDistance, _camera.farViewDistance);
 }
 
@@ -17,17 +17,18 @@ CXRayMarchInfo CXRMRenderer::RayMarchFromCam(const Vec3& rayDirection) const
 
 //public
 
-CXRMRenderer::CXRMRenderer() :
-	_renderScene(CXRenderScene()), _camera(CXCamera(Vec3(0, 1, 0), DEFAULT_FAR_VIEW_DISTANCE)) {}
+CXRMRenderer::CXRMRenderer(CXRenderScene*& renderScene_ptr, const CXCamera& camera) :
+	_renderScene_ptr(renderScene_ptr), _camera(camera) {}
 
-CXRMRenderer::CXRMRenderer(const CXRenderScene& renderScene, const CXCamera& camera) :
-	_renderScene(renderScene), _camera(camera) {}
-
-CXRMRenderer::~CXRMRenderer() {}
-
-const CXRenderScene& CXRMRenderer::GetRenderScene() const
+CXRMRenderer::~CXRMRenderer()
 {
-	return _renderScene;
+	if (_renderScene_ptr)
+		delete _renderScene_ptr;
+}
+
+const CXRenderScene*& CXRMRenderer::GetRenderScene_Ptr()
+{
+	return _renderScene_ptr;
 }
 
 void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
@@ -49,12 +50,15 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 
 CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 {
-	float uv_x = (float)x / height,
-		uv_y = (float)y / height;
+	float resDiv = CXMath::Max(width, height);
 
-	float widthCenterRatio = .5f * (float)width / height;
+	float uv_x = (float)x / resDiv,
+		uv_y = (float)y / resDiv;
 
-	float camUV_x = uv_x - widthCenterRatio, camUV_y = uv_y - widthCenterRatio;
+	float centerX = ((float)width / resDiv) / 2.0f,
+		centerY = ((float)height / resDiv) / 2.0f;
+
+	float camUV_x = uv_x - centerX, camUV_y = uv_y - centerY;
 
 	static const float shadowRemoveAmount = .7f;
 
@@ -67,20 +71,25 @@ CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 
 	CXRayMarchInfo rayMarchFromCamInfo = RayMarchFromCam(rayDirFromCam);
 
+
 	if (rayMarchFromCamInfo.isHit)
 	{
+#if 0
+		finalColor = rayMarchFromCamInfo.rendObject_sharePtr->material.OnPixel(x, y, width, height, _renderScene_ptr);
+
 		//if ptr exists
-		if (rayMarchFromCamInfo.rendObject_sharePtr->material_ptr)
+		/*if (rayMarchFromCamInfo.rendObject_sharePtr-)
 		{
 			finalColor = rayMarchFromCamInfo.rendObject_sharePtr->
 				material_ptr->OnPixel(x, y, width, height, _renderScene);
-		}
+		}*/
 		
-#if 0
-		Vec3 normal = rayMarchFromCamInfo.rendObject_sharePtr->GetNormal(rayMarchFromCamInfo.hitPoint);
+#endif
+#if 1
+		Vec3 normal = rayMarchFromCamInfo.rendObject_sharePtr->renderBody_sharePtr->GetNormal(rayMarchFromCamInfo.hitPoint);
 
-		CXColor materialColor =
-			rayMarchFromCamInfo.rendObject_sharePtr->GetMaterialColor(rayMarchFromCamInfo.hitPoint);
+		CXColor materialColor = CXColor(1, 1, 1);
+			//rayMarchFromCamInfo.rendObject_sharePtr->renderBody_sharePtr->GetMaterialColor(rayMarchFromCamInfo.hitPoint);
 
 		//this is for checking shadows
 		CXRayMarchInfo rayMarchFromPointToLightInfo =

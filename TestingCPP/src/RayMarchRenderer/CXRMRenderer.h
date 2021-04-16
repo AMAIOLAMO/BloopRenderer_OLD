@@ -5,7 +5,6 @@
 #include "CXRenderScene.h"
 #include "../CxLib/Math/CXMath.h"
 #include "../CxLib/BitMap/CXBitMap.h"
-#include "../RayMarchRenderer/RenderObjects/CXMaterial.h"
 
 //This is where receives a scene and ray marches
 
@@ -15,8 +14,8 @@
 class CXRMRenderer
 {
 private:
-	CXRenderScene _renderScene;
 	CXCamera _camera;
+	const CXRenderScene* _renderScene_ptr;
 
 public:
 	unsigned int maxMarchingIteration = 1000; //the max iterations a ray marching renderer should iterate
@@ -32,15 +31,11 @@ private:
 	CXColor OnPixelLoop(int x, int y, int width, int height) const;
 
 public:
-	/// <summary>
-	/// creates a very empty scene to render
-	/// </summary>
-	CXRMRenderer();
 
 	/// <summary>
 	/// uses the target render scene to render
 	/// </summary>
-	CXRMRenderer(const CXRenderScene& renderScene, const CXCamera& camera);
+	CXRMRenderer(CXRenderScene*& renderScene_ptr, const CXCamera& camera);
 
 	/// <summary>
 	/// A renderer IS NOT MEANT TO BE COPIED
@@ -52,7 +47,7 @@ public:
 	/// <summary>
 	/// Get's the render scene (readonly)
 	/// </summary>
-	const CXRenderScene& GetRenderScene() const;
+	const CXRenderScene*& GetRenderScene_Ptr();
 
 	/// <summary>
 	/// Renders the scene to the target bitmap (this function only modifies the input)
