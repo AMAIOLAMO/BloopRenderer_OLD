@@ -7,8 +7,6 @@
 #include "../CxLib/BitMap/CXBitMap.h"
 #include "RenderObjects/CXMaterial.h"
 
-//This is where receives a scene and ray marches
-
 /// <summary>
 /// A simple ray march renderer made by CXRedix :D
 /// </summary>

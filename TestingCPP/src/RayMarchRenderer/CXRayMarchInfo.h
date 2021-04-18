@@ -5,6 +5,12 @@
 #include "../CxLib/Math/CXVector.h"
 #include "RenderObjects/CXRenderObject.h"
 
+//quick get rend body from ray march info
+#define GET_REND_BODY(rmInfo) rmInfo.rendObject_sharePtr->renderBody_sharePtr
+
+//quick get material from ray march info
+#define GET_MATERIAL(rmInfo) rmInfo.rendObject_sharePtr->GetMaterial()
+
 /// <summary>
 /// This stores info of a ray hitting onto a render Object in the renderer
 /// </summary>

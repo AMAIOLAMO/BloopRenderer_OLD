@@ -7,7 +7,7 @@ CXColor CXPhongMaterial::OnPixel(const unsigned int& x, const unsigned int& y,
 	static const float shadowRemoveAmount = .7f;
 	static const Vec3 fakeLightDir_normalized = Vec3::GetNormalized(Vec3(-.3f, 1, -.3f));
 
-	static const Vec3 normal = rayMarchInfo.rendObject_sharePtr->renderBody_sharePtr->GetNormal(rayMarchInfo.hitPoint);
+	Vec3 normal = GET_REND_BODY(rayMarchInfo)->GetNormal(rayMarchInfo.hitPoint);
 
 	CXColor materialColor = CXColor(1, 1, 1);
 

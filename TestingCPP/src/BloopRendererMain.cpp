@@ -46,24 +46,23 @@ void DoRenderSimpleScene(Console& console)
 	CXRenderScene* renderScene_ptr = new CXRenderScene;
 	CXCamera camera(Vec3(0, 1, -1), FAR_VIEW_DISTANCE);
 
-	/*auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(-1, 1, 5), 1), CXMaterial());*/
-
 	const CXMaterial* pMatPtr = new CXPhongMaterial;
+	const CXMaterial* plainMatPtr = new CXMaterial;
 
 	auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(0, 1, 5), 1.0f), pMatPtr);
+	auto greenSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(1, 1, 5), 1.0f), plainMatPtr);// CXSphereRenderBody(Vec3(1, 1, 5), CXColor(0, 1, 0), 1);
 
-	/*auto redSphere = CXSphereRenderBody(Vec3(-1, 1, 5), CXColor(1, 0, 0), matPtr, 1);
-	auto greenSphere = CXSphereRenderBody(Vec3(1, 1, 5), CXColor(0, 1, 0), 1);
-	auto bluePlane = CXInfPlaneRenderBody(Vec3(0, 0, 0), CXColor(0, 0, 1));*/
-
-	//redSphere.material_sharePtr = std::make_shared<CXMaterial>();
+	/* auto bluePlane = CXInfPlaneRenderBody(Vec3(0, 0, 0), CXColor(0, 0, 1)); */
 
 	//we use make shared here because we store stuff here as a pointer to be safe and easy to access
-	renderScene_ptr->Add(std::make_shared<CXRenderObject>(redSphere));
-		/*.Add(std::make_shared<CXRenderObject>(greenSphere))
-		.Add(std::make_shared<CXRenderObject>(bluePlane));*/
+	renderScene_ptr->Add(std::make_shared<CXRenderObject>(redSphere))
+		.Add(std::make_shared<CXRenderObject>(greenSphere));
+
+		/* .Add(std::make_shared<CXRenderObject>(bluePlane)); */
 
 	CXRMRenderer renderer(renderScene_ptr, camera);
+
+	// ----------------- START GENERATING ----------------- //
 
 	console.ChangeConsoleColor(Console::BLUE);
 
