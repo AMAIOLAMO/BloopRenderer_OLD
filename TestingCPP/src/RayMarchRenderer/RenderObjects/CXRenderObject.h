@@ -3,7 +3,7 @@
 #include <memory>
 
 //#include "CXMaterial.h"
-class CXMaterial;
+class CXMaterialBase;
 #include "CXRenderBody.h"
 
 /// <summary>
@@ -12,7 +12,7 @@ class CXMaterial;
 class CXRenderObject
 {
 private:
-	const CXMaterial* _materialPtr;
+	const CXMaterialBase* _materialPtr;
 
 public:
 	//a shared ptr that points to a render body
@@ -23,11 +23,11 @@ public:
 
 	//CXRenderObject(const std::shared_ptr<CXRenderBody>& _renderBody_sharePtr);
 
-	CXRenderObject(const std::shared_ptr<CXRenderBody>& _renderBody_sharePtr, const CXMaterial*& materialPtr);
+	CXRenderObject(const std::shared_ptr<CXRenderBody>& _renderBody_sharePtr, const CXMaterialBase*& materialPtr);
 
 	CXRenderObject(const CXRenderObject& other);
 
-	const CXMaterial* GetMaterial() const;
+	const CXMaterialBase* GetMaterial() const;
 
 	~CXRenderObject();
 };

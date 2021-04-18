@@ -9,8 +9,6 @@ CXColor CXPhongMaterial::OnPixel(const unsigned int& x, const unsigned int& y,
 
 	Vec3 normal = GET_REND_BODY(rayMarchInfo)->GetNormal(rayMarchInfo.hitPoint);
 
-	CXColor materialColor = CXColor(1, 1, 1);
-
 	//this is for checking shadows
 	CXRayMarchInfo rayMarchFromPointToLightInfo =
 		renderScene_ptr->RayMarchTo(rayMarchInfo.hitPoint + fakeLightDir_normalized, fakeLightDir_normalized, cam);
@@ -28,5 +26,8 @@ CXColor CXPhongMaterial::OnPixel(const unsigned int& x, const unsigned int& y,
 			0.0f);
 	}
 
-	return materialColor * lightIntensity;
+	return baseColor * lightIntensity;
 }
+
+CXPhongMaterial::CXPhongMaterial(const CXColor& color) :
+	CXMaterial(color) {}

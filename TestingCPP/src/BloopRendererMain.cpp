@@ -46,11 +46,11 @@ void DoRenderSimpleScene(Console& console)
 	CXRenderScene* renderScene_ptr = new CXRenderScene;
 	CXCamera camera(Vec3(0, 1, -1), FAR_VIEW_DISTANCE);
 
-	const CXMaterial* pMatPtr = new CXPhongMaterial;
-	const CXMaterial* plainMatPtr = new CXMaterial;
+	const CXMaterialBase* pMatPtr = new CXPhongMaterial(CXColor(1.0f, .0f, .0f));
+	const CXMaterialBase* plainMatPtr = new CXMaterial(CXColor(.0f, 1.0f, .0f));
 
 	auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(0, 1, 5), 1.0f), pMatPtr);
-	auto greenSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(1, 1, 5), 1.0f), plainMatPtr);// CXSphereRenderBody(Vec3(1, 1, 5), CXColor(0, 1, 0), 1);
+	auto greenSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(1, 1, 5), 1.0f), plainMatPtr);
 
 	/* auto bluePlane = CXInfPlaneRenderBody(Vec3(0, 0, 0), CXColor(0, 0, 1)); */
 
