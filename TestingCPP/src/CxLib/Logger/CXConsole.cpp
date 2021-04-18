@@ -1,4 +1,4 @@
-#include "Logger.h"
+#include "CXConsole.h"
 
 Console::Console() :
 	_hndConsole(GetStdHandle(STD_OUTPUT_HANDLE)) {}

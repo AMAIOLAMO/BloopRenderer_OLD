@@ -1,58 +1,46 @@
 #include "CXVector.h"
 
-Vec3::Vec3()
-{
-	Set(0.0f, 0.0f, 0.0f);
-}
+Vec3::Vec3() :
+	x(0), y(0), z(0) {}
 
-Vec3::Vec3(float _x, float _y, float _z)
-{
-	Set(_x, _y, _z);
-}
+Vec3::Vec3(float _x, float _y, float _z) :
+	x(_x), y(_y), z(_z) {}
 
-Vec3::Vec3(const Vec3& other)
-{
-	Set(other.x, other.y, other.z);
-}
+Vec3::Vec3(const Vec3& other) :
+	x(other.x), y(other.y), z(other.z) {}
 
 Vec3::Vec3(const DV& defaultVal)
 {
 	switch (defaultVal)
 	{
-	case DV::zero:
-		Set(0, 0, 0);
+	case DV::zero:     Set(0, 0, 0);
 		break;
-	case DV::one:
-		Set(1, 1, 1);
+	case DV::one:      Set(1, 1, 1);
 		break;
-	case DV::left:
-		Set(-1, 0, 0);
+	case DV::left:     Set(-1, 0, 0);
 		break;
-	case DV::right:
-		Set(1, 0, 0);
+	case DV::right:    Set(1, 0, 0);
 		break;
-	case DV::up:
-		Set(0, 1, 0);
+	case DV::up:       Set(0, 1, 0);
 		break;
-	case DV::down:
-		Set(0, -1, 0);
+	case DV::down:     Set(0, -1, 0);
 		break;
-	case DV::forward:
-		Set(0, 0, 1);
+	case DV::forward:  Set(0, 0, 1);
 		break;
-	case DV::backward:
-		Set(0, 0, -1);
+	case DV::backward: Set(0, 0, -1);
 		break;
 	default:
-		throw std::exception("If you see this error, that means you may have used a DefaultValues in a vector3 that doesn't even have cased");
+		throw std::exception("If you see this error, that means you may have used a DefaultValues\
+			in a vector3 that doesn't even have cased");
 	}
 }
 
+// ------------- VARIABLES ------------- //
+
 void Vec3::SetLength(float length)
 {
-	float scaleToNormalize = length / GetLength();
-
-	*this *= scaleToNormalize;
+	//float scaleToNormalize = ;
+	*this *= length / GetLength();
 }
 
 void Vec3::Normalize()
@@ -91,6 +79,8 @@ std::string Vec3::ToString() const
 {
 	return std::string("(") + std::to_string(x) + ", " + std::to_string(y) + ", " + std::to_string(z) + ")";
 }
+
+// ------------- OPERATORS ------------- //
 
 #pragma region Operator Overloads
 
@@ -174,6 +164,8 @@ Vec3 Vec3::operator-() const
 
 #pragma endregion
 
+// ------------- HELPERS ------------- //
+
 #pragma region Static helpers
 
 float Vec3::Dot(const Vec3& a, const Vec3& b)
@@ -184,16 +176,6 @@ float Vec3::Dot(const Vec3& a, const Vec3& b)
 Vec3 Vec3::Cross(const Vec3& a, const Vec3& b)
 {
 	return a.Cross(b);
-}
-
-float Vec3::GetLength(const Vec3& a)
-{
-	return a.GetLength();
-}
-
-float Vec3::GetLengthSqr(const Vec3& a)
-{
-	return a.GetLengthSqr();
 }
 
 Vec3 Vec3::GetLenVect(const Vec3& a, float len)

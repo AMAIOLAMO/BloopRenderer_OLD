@@ -3,7 +3,7 @@
 #include <iostream>
 #include <chrono>
 
-#include "CxLib/Logger/Logger.h"
+#include "CxLib/Logger/CXConsole.h"
 #include "CxLib/Math/CXVector.h"
 #include "CxLib/BitMap/CXBitMap.h"
 #include "CxLib/BitMap/CXColor.h"
@@ -36,7 +36,7 @@ void DoRenderSimpleScene(Console& console)
 	CXRenderScene* renderScene_ptr = new CXRenderScene;
 	CXCamera camera(Vec3(0, 1, -1), FAR_VIEW_DISTANCE);
 
-	const CXMaterialBase* pMatPtr = new CXPhongMaterial(CXColor(1, 0, 0), CXColor(.2f, 0, .1f), CXColor(1, 1, 1));
+	const CXMaterialBase* pMatPtr = new CXPhongMaterial(CXColor(1, 0, 0), CXColor(.2f, 0, .1f), CXColor(1, 1, 1), 50.0f);
 	const CXMaterialBase* plainMatPtr = new CXMaterial(CXColor(0, 1, 0));
 
 	const CXMaterialBase* gMatPtr = new CXMaterial(CXColor(0, 0, 1));

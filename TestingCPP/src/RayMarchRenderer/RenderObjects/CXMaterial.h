@@ -21,7 +21,7 @@ public:
 	/// </summary>
 	virtual CXColor OnPixel(const unsigned int& x, const unsigned int& y,
 		const unsigned int& width, const unsigned int& height,
-		const CXRenderScene* const & renderScene_ptr, const CXRayMarchInfo& rayMarchInfo, const CXCamera& cam) const;
+		const CXRenderScene* const & renderScene_ptr, const CXRayMarchInfo& rayMarchInfo, const CXCamera& camera) const;
 };
 
 /// <summary>

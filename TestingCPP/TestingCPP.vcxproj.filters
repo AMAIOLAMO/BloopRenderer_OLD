@@ -18,7 +18,7 @@
     <ClCompile Include="src\BloopRendererMain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\CxLib\Logger\Logger.cpp">
+    <ClCompile Include="src\CxLib\Logger\CXConsole.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\CxLib\Math\CXVector.cpp">
@@ -65,7 +65,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\CxLib\Logger\Logger.h">
+    <ClInclude Include="src\CxLib\Logger\CXConsole.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\CxLib\Math\CXVector.h">

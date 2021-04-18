@@ -1,4 +1,5 @@
 #pragma once
+
 #include "../CxLib/Math/CXVector.h"
 
 /// <summary>

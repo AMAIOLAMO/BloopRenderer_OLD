@@ -11,7 +11,12 @@ public:
 	enum class DV
 	{
 		zero, one,
-		left, right, up, down, forward, backward
+
+		// ------- DIRECTION ------- //
+
+		left, right,
+		up, down,
+		forward, backward
 	};
 
 	/// <summary>
@@ -110,22 +115,12 @@ public:
 	static Vec3 Cross(const Vec3& a, const Vec3& b);
 
 	/// <summary>
-	/// Get's the length of the vector
-	/// </summary>
-	static float GetLength(const Vec3& a);
-
-	/// <summary>
-	/// Get's the length of the vector but squared
-	/// </summary>
-	static float GetLengthSqr(const Vec3& a);
-
-	/// <summary>
-	/// Copies a new vector with a specified length
+	/// Copies the new vector and set it to a specified length
 	/// </summary>
 	static Vec3 GetLenVect(const Vec3& a, float len);
 
 	/// <summary>
-	/// copies the target vector and normalize the copied vector
+	/// Copies the target vector and normalize the copied vector
 	/// </summary>
 	static Vec3 GetNormalized(const Vec3& a);
 

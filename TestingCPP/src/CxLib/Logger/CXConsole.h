@@ -18,6 +18,10 @@ public:
 	/// an end line character '\n'
 	/// </summary>
 	static const char endl = '\n';
+	/// <summary>
+	/// an tab character '\t'
+	/// </summary>
+	static const char tab =  '\t';
 
 	static const int BLUE          = 0x0001;
 	static const int GREEN         = 0x0002;
@@ -27,6 +31,7 @@ public:
 
 	static const int REVERSE_VIDEO = 0x4000;
 	static const int UNDERSCORE    = 0x8000;
+
 public:
 	Console();
 
@@ -39,6 +44,9 @@ public:
 		std::cout << message << std::endl;
 	}
 
+	/// <summary>
+	/// Raw logs to the console
+	/// </summary>
 	template <typename T>
 	void RawLog(const T& message) const
 	{
