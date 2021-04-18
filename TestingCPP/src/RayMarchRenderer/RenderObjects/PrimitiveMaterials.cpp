@@ -1,7 +1,8 @@
 #include "PrimitiveMaterials.h"
 
-CXColor CXPhongMaterial::OnPixel(const unsigned int& x, const unsigned int& y, const unsigned int& width, const unsigned int& height,
-	const CXRenderScene* const& renderScene_ptr, const CXRayMarchInfo& rayMarchInfo) const
+CXColor CXPhongMaterial::OnPixel(const unsigned int& x, const unsigned int& y,
+	const unsigned int& width,const unsigned int& height,
+	const CXRenderScene* const& renderScene_ptr, const CXRayMarchInfo& rayMarchInfo, const CXCamera& cam) const
 {
 	static const float shadowRemoveAmount = .7f;
 	static const Vec3 fakeLightDir_normalized = Vec3::GetNormalized(Vec3(-.3f, 1, -.3f));
@@ -9,11 +10,10 @@ CXColor CXPhongMaterial::OnPixel(const unsigned int& x, const unsigned int& y, c
 	static const Vec3 normal = rayMarchInfo.rendObject_sharePtr->renderBody_sharePtr->GetNormal(rayMarchInfo.hitPoint);
 
 	CXColor materialColor = CXColor(1, 1, 1);
-	//rayMarchFromCamInfo.rendObject_sharePtr->renderBody_sharePtr->GetMaterialColor(rayMarchFromCamInfo.hitPoint);
 
 	//this is for checking shadows
 	CXRayMarchInfo rayMarchFromPointToLightInfo =
-		renderScene_ptr->RayMarchTo(rayMarchInfo.hitPoint + fakeLightDir_normalized, fakeLightDir_normalized);
+		renderScene_ptr->RayMarchTo(rayMarchInfo.hitPoint + fakeLightDir_normalized, fakeLightDir_normalized, cam);
 
 	float lightIntensity;
 
@@ -28,6 +28,5 @@ CXColor CXPhongMaterial::OnPixel(const unsigned int& x, const unsigned int& y, c
 			0.0f);
 	}
 
-	//finalColor = ;
 	return materialColor * lightIntensity;
 }

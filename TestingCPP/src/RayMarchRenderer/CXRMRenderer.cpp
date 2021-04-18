@@ -2,12 +2,9 @@
 
 static const float DEFAULT_FAR_VIEW_DISTANCE = 100.0f;
 
-//private
-
 CXRayMarchInfo CXRMRenderer::RayMarchFrom(const Vec3& rayOrigin, const Vec3& rayDirection) const
 {
-	return _renderScene_ptr->RayMarchTo(rayOrigin, rayDirection,
-		maxMarchingIteration, minSurfaceDistance, _camera.farViewDistance);
+	return _renderScene_ptr->RayMarchTo(rayOrigin, rayDirection, _camera);
 }
 
 CXRayMarchInfo CXRMRenderer::RayMarchFromCam(const Vec3& rayDirection) const
@@ -74,7 +71,7 @@ CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 	{
 #if 1
 		finalColor = rayMarchFromCamInfo.rendObject_sharePtr->
-			GetMaterial()->OnPixel(x, y, width, height, _renderScene_ptr, rayMarchFromCamInfo);
+			GetMaterial()->OnPixel(x, y, width, height, _renderScene_ptr, rayMarchFromCamInfo, _camera);
 
 		//if ptr exists
 		/*if (rayMarchFromCamInfo.rendObject_sharePtr-)

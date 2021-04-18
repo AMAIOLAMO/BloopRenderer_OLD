@@ -5,6 +5,7 @@
 
 #include "CXRayMarchInfo.h"
 #include "RenderObjects/CXRenderObject.h"
+#include "CXCamera.h"
 
 /// <summary>
 /// A renderable scene to pass into the Ray march renderer
@@ -37,6 +38,8 @@ public:
 
 	CXRayMarchInfo RayMarchTo(const Vec3& rayOrigin, const Vec3& rayDirection,
 		unsigned int maxMarchIteration, float minSurfaceDistance, float farViewDistance) const;
+
+	CXRayMarchInfo RayMarchTo(const Vec3& rayOrigin, const Vec3& rayDirection, const CXCamera& cam) const;
 
 	/// <summary>
 	/// Tries to get the closest distance from a specified from point to the entire scene

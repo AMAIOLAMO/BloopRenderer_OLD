@@ -18,10 +18,6 @@ private:
 	CXCamera _camera;
 	const CXRenderScene* _renderScene_ptr;
 
-public:
-	unsigned int maxMarchingIteration = 1000; //the max iterations a ray marching renderer should iterate
-	float minSurfaceDistance = .01f; //the minimum distance for the ray marching sphere to be :D
-
 private:
 	/// <summary>
 	/// Marching from one direction

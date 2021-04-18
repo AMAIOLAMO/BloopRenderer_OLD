@@ -57,6 +57,11 @@ CXRayMarchInfo CXRenderScene::RayMarchTo(const Vec3& rayOrigin, const Vec3& rayD
 	return CXRayMarchInfo(targetHitPoint, marchIterationPassed, isHit, distanceFromOriginMarched, targetRendObj_sharePtr);
 }
 
+CXRayMarchInfo CXRenderScene::RayMarchTo(const Vec3& rayOrigin, const Vec3& rayDirection, const CXCamera& cam) const
+{
+	return RayMarchTo(rayOrigin, rayDirection, cam.maxMarchingIteration, cam.minSurfDistance, cam.farViewDistance);
+}
+
 bool CXRenderScene::TryGetClosestDistance(const Vec3& fromPoint,
 	float* const out_distance, std::shared_ptr<CXRenderObject>* const out_renderObject_ptr) const
 {

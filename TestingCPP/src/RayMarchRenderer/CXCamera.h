@@ -9,6 +9,8 @@ class CXCamera
 public:
 	Vec3 position;
 	float farViewDistance;
+	unsigned int maxMarchingIteration = 1000;
+	float minSurfDistance = .01f;
 
 	CXCamera(Vec3 _position, float _farViewDistance);
 	CXCamera(const CXCamera& other);
