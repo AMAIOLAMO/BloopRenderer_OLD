@@ -5,7 +5,11 @@
 class CXPhongMaterial : public CXMaterial
 {
 public:
-	CXPhongMaterial(const CXColor& color);
+	CXColor ambientColor;
+	CXColor specularColor;
+
+public:
+	CXPhongMaterial(const CXColor& base, const CXColor& ambient, const CXColor& specular);
 
 	__OVERRIDE_ON_PIXEL;
 

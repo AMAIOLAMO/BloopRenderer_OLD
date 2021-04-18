@@ -35,33 +35,33 @@ public:
 #pragma region operators
 
 	CXColor operator*(const float& intensity) const;
-
 	void operator*=(const float& intensity);
 
 #pragma endregion
-
 };
+
+
 
 /// <summary>
 /// Unsigned char color by CXRedix
 /// </summary>
-struct UCXColor
-{
-public:
-	unsigned char r, g, b;
-
-	UCXColor();
-	UCXColor(unsigned char _r, unsigned char _g, unsigned char _b);
-
-	~UCXColor();
-
-	/// <summary>
-	/// Set's the current color to a new color
-	/// </summary>
-	void SetColor(unsigned char _r, unsigned char _g, unsigned char _b);
-
-	/// <summary>
-	/// Set's the current color as a new color (doesn't just apply, but copy :D)
-	/// </summary>
-	void SetColor(const UCXColor& other);
-};
+//struct UCXColor
+//{
+//public:
+//	unsigned char r, g, b;
+//
+//	UCXColor();
+//	UCXColor(unsigned char _r, unsigned char _g, unsigned char _b);
+//
+//	~UCXColor();
+//
+//	/// <summary>
+//	/// Set's the current color to a new color
+//	/// </summary>
+//	void SetColor(unsigned char _r, unsigned char _g, unsigned char _b);
+//
+//	/// <summary>
+//	/// Set's the current color as a new color (doesn't just apply, but copy :D)
+//	/// </summary>
+//	void SetColor(const UCXColor& other);
+//};

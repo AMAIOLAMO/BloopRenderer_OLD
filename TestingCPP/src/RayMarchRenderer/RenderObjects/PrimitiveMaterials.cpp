@@ -29,5 +29,5 @@ CXColor CXPhongMaterial::OnPixel(const unsigned int& x, const unsigned int& y,
 	return baseColor * lightIntensity;
 }
 
-CXPhongMaterial::CXPhongMaterial(const CXColor& color) :
-	CXMaterial(color) {}
+CXPhongMaterial::CXPhongMaterial(const CXColor& base, const CXColor& ambient, const CXColor& specular) :
+	CXMaterial(base), ambientColor(ambient), specularColor(specular) {}

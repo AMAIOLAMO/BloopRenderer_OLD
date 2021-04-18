@@ -23,6 +23,9 @@ public:
 class CXInfPlaneRenderBody : public CXRenderBody
 {
 public:
+	CXInfPlaneRenderBody(const Vec3& _position);
+
 	float GetSignedDistance(const Vec3& fromPos) const override;
+
 	Vec3 GetNormal(const Vec3& pointOnSurface) const override;
 };

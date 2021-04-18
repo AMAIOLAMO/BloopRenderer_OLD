@@ -12,6 +12,9 @@ float CXSphereRenderBody::GetSignedDistance(const Vec3& fromPos) const
 
 // -------------------------- PLANE -------------------------- //
 
+CXInfPlaneRenderBody::CXInfPlaneRenderBody(const Vec3& _position) :
+	CXRenderBody(_position) {}
+
 float CXInfPlaneRenderBody::GetSignedDistance(const Vec3& fromPos) const
 {
 	return fromPos.y  - position.y;

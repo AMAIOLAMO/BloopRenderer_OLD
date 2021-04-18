@@ -26,17 +26,7 @@ int main()
 {
 	Console mainConsole;
 
-	std::chrono::steady_clock clock;
-
-	auto startClock = clock.now();
-
 	DoRenderSimpleScene(mainConsole);
-
-	auto endClock = clock.now();
-
-	auto timeElapsed = static_cast<std::chrono::duration<double>>(endClock - startClock);
-
-	mainConsole << "Total time of rendering: " << timeElapsed.count() << " seconds" << Console::endl;
 
 	std::cin.get();
 }
@@ -46,38 +36,52 @@ void DoRenderSimpleScene(Console& console)
 	CXRenderScene* renderScene_ptr = new CXRenderScene;
 	CXCamera camera(Vec3(0, 1, -1), FAR_VIEW_DISTANCE);
 
-	const CXMaterialBase* pMatPtr = new CXPhongMaterial(CXColor(1.0f, .0f, .0f));
-	const CXMaterialBase* plainMatPtr = new CXMaterial(CXColor(.0f, 1.0f, .0f));
+	const CXMaterialBase* pMatPtr = new CXPhongMaterial(CXColor(1, 0, 0), CXColor(.2f, 0, .1f), CXColor(1, 1, 1));
+	const CXMaterialBase* plainMatPtr = new CXMaterial(CXColor(0, 1, 0));
+
+	const CXMaterialBase* gMatPtr = new CXMaterial(CXColor(0, 0, 1));
 
 	auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(0, 1, 5), 1.0f), pMatPtr);
 	auto greenSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(1, 1, 5), 1.0f), plainMatPtr);
 
-	/* auto bluePlane = CXInfPlaneRenderBody(Vec3(0, 0, 0), CXColor(0, 0, 1)); */
+	auto bluePlane = CXRenderObject(std::make_shared<CXInfPlaneRenderBody>(Vec3(0, 0, 0)), gMatPtr);
 
 	//we use make shared here because we store stuff here as a pointer to be safe and easy to access
 	renderScene_ptr->Add(std::make_shared<CXRenderObject>(redSphere))
-		.Add(std::make_shared<CXRenderObject>(greenSphere));
-
-		/* .Add(std::make_shared<CXRenderObject>(bluePlane)); */
+		.Add(std::make_shared<CXRenderObject>(greenSphere))
+		.Add(std::make_shared<CXRenderObject>(bluePlane));
 
 	CXRMRenderer renderer(renderScene_ptr, camera);
 
 	// ----------------- START GENERATING ----------------- //
 
-	console.ChangeConsoleColor(Console::BLUE);
-
 	console.Log("Instantiated renderer :D");
 
-	CXBitMap renderedBitmap(200, 100);
+	CXBitMap resultImage(160, 90);
 
 	console.Log("Instantiated bit map");
+
 	console.Log("Rendering to bit map :D");
 
-	renderer.RenderToBitmap(renderedBitmap);
+	// ----------------- RENDER ----------------- //
+
+	std::chrono::steady_clock clock;
+
+	auto startClock = clock.now();
+
+	renderer.RenderToBitmap(resultImage);
+
+	auto endClock = clock.now();
+
+	auto timeElapsed = static_cast<std::chrono::duration<double>>(endClock - startClock);
+
+	console << "Total time of rendering: " << timeElapsed.count() << " seconds" << Console::endl;
+
+	// ----------------- EXPORT ----------------- //
 
 	console.Log("Exporting to bit map :D");
 
-	renderedBitmap.ExportTo(TARGET_IMG_PATH);
+	resultImage.ExportTo(TARGET_IMG_PATH);
 
 	console.ChangeConsoleColor(Console::GREEN);
 
@@ -85,7 +89,7 @@ void DoRenderSimpleScene(Console& console)
 
 	console.Log("Rendered Result");
 
-	console << "Render size: " << renderedBitmap.GetWidth() << " x " << renderedBitmap.GetHeight() << Console::endl;
+	console << "Render size: " << resultImage.GetWidth() << " x " << resultImage.GetHeight() << Console::endl;
 
-	console.Log("Finished rendering from the renderer");
+	console.Log("Finished rendering from the renderer :D");
 }
