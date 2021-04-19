@@ -31,25 +31,32 @@ int main()
 	std::cin.get();
 }
 
+#define MK_SHARE_RENDOBJ(obj) std::make_shared<CXRenderObject>(obj)
+
 void DoRenderSimpleScene(Console& console)
 {
 	CXRenderScene* renderScene_ptr = new CXRenderScene;
-	CXCamera camera(Vec3(0, 1, -1), FAR_VIEW_DISTANCE);
+	CXCamera camera(Vec3(0, 1, -5), FAR_VIEW_DISTANCE);
 
 	const CXMaterialBase* pMatPtr = new CXPhongMaterial(CXColor(1, 0, 0), CXColor(.2f, 0, .1f), CXColor(1, 1, 1), 50.0f);
 	const CXMaterialBase* plainMatPtr = new CXMaterial(CXColor(0, 1, 0));
 
 	const CXMaterialBase* gMatPtr = new CXMaterial(CXColor(0, 0, 1));
 
+	const CXMaterialBase* boxMat = new CXDiffuseMaterial(CXColor(1, 0, 0));
+
 	auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(0, 1, 5), 1.0f), pMatPtr);
 	auto greenSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(1, 1, 5), 1.0f), plainMatPtr);
 
 	auto bluePlane = CXRenderObject(std::make_shared<CXInfPlaneRenderBody>(Vec3(0, 0, 0)), gMatPtr);
 
+	auto redBox = CXRenderObject(std::make_shared<CXBoxRenderBody>(Vec3(0, 0, 0), Vec3(.8f, .8f, .8f)), boxMat);
+
 	//we use make shared here because we store stuff here as a pointer to be safe and easy to access
-	renderScene_ptr->Add(std::make_shared<CXRenderObject>(redSphere))
-		.Add(std::make_shared<CXRenderObject>(greenSphere))
-		.Add(std::make_shared<CXRenderObject>(bluePlane));
+	renderScene_ptr->Add(MK_SHARE_RENDOBJ(redSphere))
+		.Add(MK_SHARE_RENDOBJ(greenSphere))
+		.Add(MK_SHARE_RENDOBJ(redBox))
+		.Add(MK_SHARE_RENDOBJ(bluePlane));
 
 	CXRMRenderer renderer(renderScene_ptr, camera);
 

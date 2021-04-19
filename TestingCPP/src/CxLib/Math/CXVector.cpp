@@ -53,6 +53,16 @@ void Vec3::Set(float _x, float _y, float _z)
 	x = _x; y = _y; z = _z;
 }
 
+void Vec3::Map(float mapFunc(const float&))
+{
+	Set(mapFunc(x), mapFunc(y), mapFunc(z));
+}
+
+void Vec3::Map(float mapFunc(float))
+{
+	Set(mapFunc(x), mapFunc(y), mapFunc(z));
+}
+
 float Vec3::Dot(const Vec3& other) const
 {
 	return x * other.x + y * other.y + z * other.z;
@@ -160,6 +170,16 @@ bool Vec3::operator==(const Vec3& other) const
 Vec3 Vec3::operator-() const
 {
 	return Vec3(-x, -y, -z);
+}
+
+Vec3 Vec3::Min(const Vec3& a, const Vec3& b)
+{
+	return Vec3(CXMath::Min(a.x, b.x), CXMath::Min(a.y, b.y), CXMath::Min(a.z, b.z));
+}
+
+Vec3 Vec3::Max(const Vec3& a, const Vec3& b)
+{
+	return Vec3(CXMath::Max(a.x, b.x), CXMath::Max(a.y, b.y), CXMath::Max(a.z, b.z));
 }
 
 #pragma endregion

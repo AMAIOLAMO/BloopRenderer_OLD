@@ -1,6 +1,9 @@
 #pragma once
 
 #include "CXRenderBody.h"
+#include "../../CxLib/Math/CXMath.h"
+
+// -------------- SPHERE -------------- //
 
 /// <summary>
 /// A simple sphere
@@ -16,6 +19,7 @@ public:
 	float GetSignedDistance(const Vec3& fromPos) const override;
 };
 
+// -------------- PLANE -------------- //
 
 /// <summary>
 /// A plane that extends infinitely
@@ -28,4 +32,21 @@ public:
 	float GetSignedDistance(const Vec3& fromPos) const override;
 
 	Vec3 GetNormal(const Vec3& pointOnSurface) const override;
+};
+
+// -------------- BOX -------------- //
+
+/// <summary>
+/// A simple box
+/// </summary>
+class CXBoxRenderBody : public CXRenderBody
+{
+public:
+	Vec3 boxDimension;
+
+public:
+
+	CXBoxRenderBody(const Vec3& _position, const Vec3& boxDimension);
+
+	float GetSignedDistance(const Vec3& fromPos) const override;
 };

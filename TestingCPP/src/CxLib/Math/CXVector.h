@@ -2,6 +2,7 @@
 
 #include <math.h>
 #include <string>
+#include "CXMath.h"
 
 struct Vec3
 {
@@ -47,6 +48,16 @@ public:
 	/// Set's the vector
 	/// </summary>
 	void Set(float _x, float _y, float _z);
+
+	/// <summary>
+	/// Maps the values of a function using another function
+	/// </summary>
+	void Map(float mapFunc(const float&));
+
+	/// <summary>
+	/// Maps the values of a function using another function
+	/// </summary>
+	void Map(float mapFunc(float));
 
 	/// <summary>
 	/// Get's the dot product of the two vectors
@@ -102,6 +113,10 @@ public:
 #pragma endregion
 
 #pragma region Static helpers
+
+	static Vec3 Min(const Vec3& a, const Vec3& b);
+
+	static Vec3 Max(const Vec3& a, const Vec3& b);
 
 	/// <summary>
 	/// Get's the dot product of the two vectors

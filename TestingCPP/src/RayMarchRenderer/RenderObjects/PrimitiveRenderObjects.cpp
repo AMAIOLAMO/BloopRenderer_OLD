@@ -25,3 +25,29 @@ Vec3 CXInfPlaneRenderBody::GetNormal(const Vec3& pointOnSurface) const
 	//always facing up :D
 	return Vec3(0, 1, 0);
 }
+
+CXBoxRenderBody::CXBoxRenderBody(const Vec3& _position, const Vec3& _boxDimension) :
+	CXRenderBody(_position), boxDimension(_boxDimension) {}
+
+
+static float MaxZeroVecFunc(float val)
+{
+	return CXMath::Max(val, .0f);
+}
+
+float CXBoxRenderBody::GetSignedDistance(const Vec3& fromPos) const
+{
+	Vec3 absPos(fromPos);
+
+	//we absolute every single axis
+	absPos.Map(fabsf);
+
+	Vec3 q = absPos - boxDimension;
+
+	q.Map(MaxZeroVecFunc);
+
+	return q.GetLength() + CXMath::Min(CXMath::Max(q.x, CXMath::Max(q.y, q.z)), .0f);
+
+	//vec3 q = abs(p) - b;
+	//return length(max(q, 0.0)) + min(max(q.x, max(q.y, q.z)), 0.0);
+}

@@ -24,6 +24,8 @@ public:
 		const CXRenderScene* const & renderScene_ptr, const CXRayMarchInfo& rayMarchInfo, const CXCamera& camera) const;
 };
 
+// ---------------- MATERIAL ---------------- //
+
 /// <summary>
 /// a material that has a base color
 /// </summary>
