@@ -27,35 +27,47 @@ public:
 	/// get's the minimum between two values
 	/// </summary>
 	template <typename T>
-	static float Min(const T& a, const T& b)
-	{
-		return b < a ? b : a;
-	}
-
+	static float Min(const T& a, const T& b);
+	
 	/// <summary>
 	/// get's the maximum between two values
 	/// </summary>
 	template <typename T>
-	static float Max(const T& a, const T& b)
-	{
-		return b > a ? b : a;
-	}
+	static float Max(const T& a, const T& b);
 
 	/// <summary>
 	/// Limit the value under a certain threshold
 	/// </summary>
 	template <typename T>
-	static float LimitMax(const T& value, const T& threshold)
-	{
-		return Min(value, threshold);
-	}
+	static float LimitMax(const T& value, const T& threshold);
 
 	/// <summary>
 	/// Limit the value above a certain threshold
 	/// </summary>
 	template <typename T>
-	static float LimitMin(const T& value, const T& threshold)
-	{
-		return Max(value, threshold);
-	}
+	static float LimitMin(const T& value, const T& threshold);
 };
+
+template<typename T>
+inline float CXMath::Min(const T& a, const T& b)
+{
+	return b < a ? b : a;
+}
+
+template<typename T>
+inline float CXMath::Max(const T& a, const T& b)
+{
+	return b > a ? b : a;
+}
+
+template<typename T>
+inline float CXMath::LimitMax(const T& value, const T& threshold)
+{
+	return Min(value, threshold);
+}
+
+template<typename T>
+inline float CXMath::LimitMin(const T& value, const T& threshold)
+{
+	return Max(value, threshold);
+}
