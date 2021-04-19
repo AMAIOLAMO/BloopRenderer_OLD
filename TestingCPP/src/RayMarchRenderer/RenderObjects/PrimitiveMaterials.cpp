@@ -20,7 +20,7 @@ CXColor CXDiffuseMaterial::OnPixel(const unsigned int& x, const unsigned int& y,
 	CXRayMarchInfo rayMarchFromPointToLightInfo =
 		renderScene_ptr->RayMarchTo(rayMarchInfo.hitPoint + fakeLightDir_normalized, fakeLightDir_normalized, camera);
 
-	float diffuseIntensity = CXMath::Clamp01(fakeLightDir_normalized.Dot(normal));
+	float diffuseIntensity = CXMath::LimitMin(fakeLightDir_normalized.Dot(normal), .0f);
 
 	//has shadow then we make light intensity low
 	if (rayMarchFromPointToLightInfo.isHit)
@@ -78,6 +78,44 @@ CXColor CXPhongMaterial::OnPixel(const unsigned int& x, const unsigned int& y,
 	finalColor += ambientColor;
 
 	finalColor += specularColor * specularIntensity;
+
+	return finalColor;
+}
+
+// ---------------- REFLECT MATERIAL ---------------- //
+
+CXReflectiveMaterial::CXReflectiveMaterial(const unsigned int& _maxReflectCount) :
+	maxReflectCount(_maxReflectCount) {}
+
+CXColor CXReflectiveMaterial::OnPixel(const unsigned int& x, const unsigned int& y,
+	const unsigned int& width, const unsigned int& height,
+	const CXRenderScene* const& renderScene_ptr, const CXRayMarchInfo& rayMarchInfo, const CXCamera& camera) const
+{
+	Vec3 normal = GET_REND_BODY(rayMarchInfo)->GetNormal(rayMarchInfo.hitPoint);
+	Vec3 reflectVec = Vec3::GetNormalized(CXShaderUtils::Reflect(rayMarchInfo.hitPoint, normal));
+
+	Vec3 lastHitPoint(rayMarchInfo.hitPoint);
+
+	//will be black at first :D
+	CXColor finalColor(0, 0, 0);
+
+	//loop in amount of how much we can reflect
+	for (unsigned int i = 0; i < maxReflectCount; i++)
+	{
+		//we start reflecting
+		CXRayMarchInfo reflectOnRayMarchInfo = renderScene_ptr->RayMarchTo(lastHitPoint, reflectVec, camera);
+
+		if (!reflectOnRayMarchInfo.isHit)
+			break;
+
+		//if we got a Hit!
+		finalColor += CXColor::FromGreyScale(.2f);
+
+		lastHitPoint = reflectOnRayMarchInfo.hitPoint;
+
+		normal = GET_REND_BODY(reflectOnRayMarchInfo)->GetNormal(lastHitPoint);
+		reflectVec = Vec3::GetNormalized(CXShaderUtils::Reflect(lastHitPoint, normal));
+	}
 
 	return finalColor;
 }

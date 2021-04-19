@@ -24,3 +24,16 @@ public:
 
 	__OVERRIDE_ON_PIXEL;
 };
+
+
+
+class CXReflectiveMaterial : public CXMaterialBase
+{
+public:
+	unsigned int maxReflectCount;
+
+public:
+	CXReflectiveMaterial(const unsigned int& _maxReflectCount);
+
+	__OVERRIDE_ON_PIXEL;
+};

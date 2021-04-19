@@ -46,8 +46,12 @@ void DoRenderSimpleScene(Console& console)
 
 	const CXMaterialBase* boxMat = new CXDiffuseMaterial(CXColor(1, 0, 0));
 
+	const CXMaterialBase* reflectMat = new CXReflectiveMaterial(2);
+
 	auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(0, 1, 5), 1.0f), pMatPtr);
 	auto greenSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(1, 1, 5), 1.0f), plainMatPtr);
+
+	auto reflectSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(-1, 1, 5), 1.0f), reflectMat);
 
 	auto bluePlane = CXRenderObject(std::make_shared<CXInfPlaneRenderBody>(Vec3(0, 0, 0)), gMatPtr);
 
@@ -56,6 +60,7 @@ void DoRenderSimpleScene(Console& console)
 	//we use make shared here because we store stuff here as a pointer to be safe and easy to access
 	renderScene_ptr->Add(MK_SHARE_RENDOBJ(redSphere))
 		.Add(MK_SHARE_RENDOBJ(greenSphere))
+		.Add(MK_SHARE_RENDOBJ(reflectSphere))
 		.Add(MK_SHARE_RENDOBJ(redBox))
 		.Add(MK_SHARE_RENDOBJ(bluePlane));
 
