@@ -31,6 +31,7 @@ int main()
 	std::cin.get();
 }
 
+//makes a shared render object
 #define MK_SHARE_RENDOBJ(obj) std::make_shared<CXRenderObject>(obj)
 
 void DoRenderSimpleScene(Console& console)
@@ -50,7 +51,7 @@ void DoRenderSimpleScene(Console& console)
 
 	auto bluePlane = CXRenderObject(std::make_shared<CXInfPlaneRenderBody>(Vec3(0, 0, 0)), gMatPtr);
 
-	auto redBox = CXRenderObject(std::make_shared<CXBoxRenderBody>(Vec3(0, 0, 0), Vec3(.8f, .8f, .8f)), boxMat);
+	auto redBox = CXRenderObject(std::make_shared<CXBoxRenderBody>(Vec3(-1, 0, 0), Vec3(.8f, .8f, .8f)), boxMat);
 
 	//we use make shared here because we store stuff here as a pointer to be safe and easy to access
 	renderScene_ptr->Add(MK_SHARE_RENDOBJ(redSphere))
@@ -64,7 +65,7 @@ void DoRenderSimpleScene(Console& console)
 
 	console.Log("Instantiated renderer :D");
 
-	CXBitMap resultImage(160, 90);
+	CXBitMap resultImage(1600, 900);
 
 	console.Log("Instantiated bit map");
 

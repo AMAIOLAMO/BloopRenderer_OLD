@@ -2,18 +2,18 @@
 
 //instantiates the render scene with render objects
 CXRenderScene::CXRenderScene() :
-	_rendObject_sharePtrs() {}
+	m_RendObject_sharePtrs() {}
 
 //simply just real copies the render object
 CXRenderScene::CXRenderScene(const std::vector<std::shared_ptr<CXRenderObject>>& rendObject_sharePtrs) :
-	_rendObject_sharePtrs(rendObject_sharePtrs) {}
+	m_RendObject_sharePtrs(rendObject_sharePtrs) {}
 
 CXRenderScene::CXRenderScene(const CXRenderScene& other) :
-	_rendObject_sharePtrs(other.GetRendObject_sharePtrs()) {}
+	m_RendObject_sharePtrs(other.GetRendObject_sharePtrs()) {}
 
 CXRenderScene& CXRenderScene::Add(const std::shared_ptr<CXRenderObject>& rendObject_sharePtr)
 {
-	_rendObject_sharePtrs.push_back(rendObject_sharePtr);
+	m_RendObject_sharePtrs.push_back(rendObject_sharePtr);
 	return *this; //for chaining methods together
 }
 
@@ -65,31 +65,31 @@ CXRayMarchInfo CXRenderScene::RayMarchTo(const Vec3& rayOrigin, const Vec3& rayD
 bool CXRenderScene::TryGetClosestDistance(const Vec3& fromPoint,
 	float* const out_distance, std::shared_ptr<CXRenderObject>* const out_renderObject_ptr) const
 {
-	if (_rendObject_sharePtrs.size() == 0)
+	if (m_RendObject_sharePtrs.size() == 0)
 	{
 		*out_distance = NAN;
 		return false;
 	}
 	//else
 
-	if (_rendObject_sharePtrs.size() == 1)
+	if (m_RendObject_sharePtrs.size() == 1)
 	{
-		*out_distance = _rendObject_sharePtrs[0]->renderBody_sharePtr->GetSignedDistance(fromPoint);
+		*out_distance = m_RendObject_sharePtrs[0]->renderBody_sharePtr->GetSignedDistance(fromPoint);
 
 		//change content, BUT NOT POINTER
-		*out_renderObject_ptr = _rendObject_sharePtrs[0];
+		*out_renderObject_ptr = m_RendObject_sharePtrs[0];
 		return true;
 	}
 
 	//else there are more than 1 rendering objects :D (at least 2)
 
-	float minDist = _rendObject_sharePtrs[0]->renderBody_sharePtr->GetSignedDistance(fromPoint);
+	float minDist = m_RendObject_sharePtrs[0]->renderBody_sharePtr->GetSignedDistance(fromPoint);
 	int targetIndex = 0;
 
 	//from the second (because we used the first one)
-	for (size_t i = 1; i < _rendObject_sharePtrs.size(); i++)
+	for (size_t i = 1; i < m_RendObject_sharePtrs.size(); i++)
 	{
-		float currentDist = _rendObject_sharePtrs[i]->renderBody_sharePtr->GetSignedDistance(fromPoint);
+		float currentDist = m_RendObject_sharePtrs[i]->renderBody_sharePtr->GetSignedDistance(fromPoint);
 
 		//if current distance is smaller than the min distance, update :D
 		if (minDist > currentDist)
@@ -102,7 +102,7 @@ bool CXRenderScene::TryGetClosestDistance(const Vec3& fromPoint,
 	*out_distance = minDist;
 
 	//change content, BUT NOT POINTER
-	*out_renderObject_ptr = _rendObject_sharePtrs[targetIndex];
+	*out_renderObject_ptr = m_RendObject_sharePtrs[targetIndex];
 
 	return true;
 }
@@ -118,10 +118,10 @@ float CXRenderScene::GetClosestDistance(const Vec3& fromPoint) const
 
 std::vector<std::shared_ptr<CXRenderObject>>& CXRenderScene::GetRendObject_sharePtrs()
 {
-	return _rendObject_sharePtrs;
+	return m_RendObject_sharePtrs;
 }
 
 const std::vector<std::shared_ptr<CXRenderObject>>& CXRenderScene::GetRendObject_sharePtrs() const
 {
-	return _rendObject_sharePtrs;
+	return m_RendObject_sharePtrs;
 }

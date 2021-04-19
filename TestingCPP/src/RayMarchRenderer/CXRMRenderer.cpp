@@ -4,28 +4,28 @@ static const float DEFAULT_FAR_VIEW_DISTANCE = 100.0f;
 
 CXRayMarchInfo CXRMRenderer::RayMarchFrom(const Vec3& rayOrigin, const Vec3& rayDirection) const
 {
-	return _renderScene_ptr->RayMarchTo(rayOrigin, rayDirection, _camera);
+	return m_RenderScene_ptr->RayMarchTo(rayOrigin, rayDirection, m_Camera);
 }
 
 CXRayMarchInfo CXRMRenderer::RayMarchFromCam(const Vec3& rayDirection) const
 {
-	return RayMarchFrom(_camera.position, rayDirection);
+	return RayMarchFrom(m_Camera.position, rayDirection);
 }
 
 //public
 
 CXRMRenderer::CXRMRenderer(CXRenderScene*& renderScene_ptr, const CXCamera& camera) :
-	_renderScene_ptr(renderScene_ptr), _camera(camera) {}
+	m_RenderScene_ptr(renderScene_ptr), m_Camera(camera) {}
 
 CXRMRenderer::~CXRMRenderer()
 {
-	if (_renderScene_ptr)
-		delete _renderScene_ptr;
+	if (m_RenderScene_ptr)
+		delete m_RenderScene_ptr;
 }
 
 const CXRenderScene*& CXRMRenderer::GetRenderScene_Ptr()
 {
-	return _renderScene_ptr;
+	return m_RenderScene_ptr;
 }
 
 void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
@@ -45,7 +45,7 @@ void CXRMRenderer::RenderToBitmap(CXBitMap& targetBitmap) const
 	}
 }
 
-CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
+CXColor CXRMRenderer::OnPixelLoop(const int& x, const int& y, const int& width, const int& height) const
 {
 	float resDiv = CXMath::Max(static_cast<float>(width), static_cast<float>(height));
 
@@ -57,9 +57,7 @@ CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 
 	float camUV_x = uv_x - centerX, camUV_y = uv_y - centerY;
 
-	
-
-	Vec3 rayDirFromCam = _camera.GetRayDirection(camUV_x, camUV_y);
+	Vec3 rayDirFromCam = m_Camera.GetRayDirection(camUV_x, camUV_y);
 
 	//each pixel (which is UV :D)
 	CXColor finalColor(0, 0, 0);
@@ -70,7 +68,7 @@ CXColor CXRMRenderer::OnPixelLoop(int x, int y, int width, int height) const
 	if (rayMarchFromCamInfo.isHit)
 	{
 		finalColor = GET_MATERIAL(rayMarchFromCamInfo)->
-			OnPixel(x, y, width, height, _renderScene_ptr, rayMarchFromCamInfo, _camera);
+			OnPixel(x, y, width, height, m_RenderScene_ptr, rayMarchFromCamInfo, m_Camera);
 	}
 	else
 	{

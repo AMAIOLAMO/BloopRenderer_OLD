@@ -13,7 +13,7 @@
 class CXRenderScene
 {
 private:
-	std::vector<std::shared_ptr<CXRenderObject>> _rendObject_sharePtrs;
+	std::vector<std::shared_ptr<CXRenderObject>> m_RendObject_sharePtrs;
 
 public:
 	/// <summary>

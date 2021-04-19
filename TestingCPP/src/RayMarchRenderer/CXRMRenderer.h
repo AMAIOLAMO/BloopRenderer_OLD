@@ -13,8 +13,8 @@
 class CXRMRenderer
 {
 private:
-	CXCamera _camera;
-	const CXRenderScene* _renderScene_ptr;
+	CXCamera m_Camera;
+	const CXRenderScene* m_RenderScene_ptr;
 
 private:
 	/// <summary>
@@ -23,7 +23,7 @@ private:
 	CXRayMarchInfo RayMarchFrom(const Vec3& rayOrigin, const Vec3& rayDirection) const;
 	CXRayMarchInfo RayMarchFromCam(const Vec3& rayDirection) const;
 
-	CXColor OnPixelLoop(int x, int y, int width, int height) const;
+	CXColor OnPixelLoop(const int& x, const int& y, const int& width, const int& height) const;
 
 public:
 
