@@ -45,7 +45,6 @@ public:
 	Vec3 boxDimension;
 
 public:
-
 	CXBoxRenderBody(const Vec3& _position, const Vec3& boxDimension);
 
 	float GetSignedDistance(const Vec3& fromPos) const override;

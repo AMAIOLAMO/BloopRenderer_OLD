@@ -16,7 +16,7 @@ Vec3 CXRenderBody::GetNormal(const Vec3& point) const
 	//a static so compiler won't create each time when we call this function
 	float centerDist = GetSignedDistance(point);
 
-	static auto SampleClosest = [&](const Vec3& epsilonVec) // pass by reference
+	auto SampleClosest = [&](const Vec3& epsilonVec) // pass by reference
 	{ return GetSignedDistance(point + epsilonVec) - centerDist; };
 
 	Vec3 xEpsilonVec = Vec3(Epsilon, 0, 0);
