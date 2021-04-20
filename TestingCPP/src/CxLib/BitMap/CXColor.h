@@ -41,4 +41,14 @@ public:
 	void operator*=(const float& intensity);
 
 #pragma endregion
+
+#pragma region static helpers
+
+	static CXColor MakeRed(const float& r);
+
+	static CXColor MakeBlue(const float& b);
+
+	static CXColor MakeGreen(const float& g);
+
+#pragma endregion
 };

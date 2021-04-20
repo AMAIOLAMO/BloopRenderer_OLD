@@ -3,10 +3,10 @@
 #include <iostream>
 #include <chrono>
 
-#include "CxLib/Logger/CXConsole.h"
 #include "CxLib/Math/CXVector.h"
-#include "CxLib/BitMap/CXBitMap.h"
 #include "CxLib/BitMap/CXColor.h"
+#include "CxLib/BitMap/CXBitMap.h"
+#include "CxLib/Logger/CXConsole.h"
 
 #include "RayMarchRenderer/CXCamera.h"
 #include "RayMarchRenderer/CXRMRenderer.h"
@@ -46,16 +46,16 @@ void DoRenderSimpleScene(Console& console)
 
 	const CXMaterialBase* boxMat = new CXDiffuseMaterial(CXColor(1, 0, 0));
 
-	const CXMaterialBase* reflectMat = new CXReflectiveMaterial(2);
+	const CXMaterialBase* reflectMat = new CXReflectiveMaterial(3);
 
 	auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(0, 1, 5), 1.0f), pMatPtr);
 	auto greenSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(1, 1, 5), 1.0f), plainMatPtr);
 
-	auto reflectSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(-1, 1, 5), 1.0f), reflectMat);
+	auto reflectSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(-2, 1, 5), 1.0f), reflectMat);
 
 	auto bluePlane = CXRenderObject(std::make_shared<CXInfPlaneRenderBody>(Vec3(0, 0, 0)), gMatPtr);
 
-	auto redBox = CXRenderObject(std::make_shared<CXBoxRenderBody>(Vec3(-1, 0, 0), Vec3(.8f, .8f, .8f)), boxMat);
+	auto redBox = CXRenderObject(std::make_shared<CXBoxRenderBody>(Vec3(-1, 3, 0), Vec3(.8f, .8f, .8f)), boxMat);
 
 	//we use make shared here because we store stuff here as a pointer to be safe and easy to access
 	renderScene_ptr->Add(MK_SHARE_RENDOBJ(redSphere))
@@ -70,7 +70,7 @@ void DoRenderSimpleScene(Console& console)
 
 	console.Log("Instantiated renderer :D");
 
-	CXBitMap resultImage(160, 90);
+	CXBitMap resultImage(1600, 900);
 
 	console.Log("Instantiated bit map");
 

@@ -17,8 +17,11 @@ CXColor CXDiffuseMaterial::OnPixel(const unsigned int& x, const unsigned int& y,
 	Vec3 normal = GET_REND_BODY(rayMarchInfo)->GetNormal(rayMarchInfo.hitPoint);
 
 	//this is for checking shadows
+	/*CXRayMarchInfo rayMarchFromPointToLightInfo =
+		renderScene_ptr->RayMarchTo(rayMarchInfo.hitPoint + fakeLightDir_normalized, fakeLightDir_normalized, camera);*/
+
 	CXRayMarchInfo rayMarchFromPointToLightInfo =
-		renderScene_ptr->RayMarchTo(rayMarchInfo.hitPoint + fakeLightDir_normalized, fakeLightDir_normalized, camera);
+		renderScene_ptr->RayMarchFromHitPoint(rayMarchInfo.hitPoint, fakeLightDir_normalized, camera);
 
 	float diffuseIntensity = CXMath::LimitMin(fakeLightDir_normalized.Dot(normal), .0f);
 
@@ -53,7 +56,8 @@ CXColor CXPhongMaterial::OnPixel(const unsigned int& x, const unsigned int& y,
 
 	//this is for checking shadows
 	CXRayMarchInfo rayMarchFromPointToLightInfo =
-		renderScene_ptr->RayMarchTo(rayMarchInfo.hitPoint + fakeLightDir_normalized, fakeLightDir_normalized, camera);
+		renderScene_ptr->RayMarchFromHitPoint(rayMarchInfo.hitPoint, fakeLightDir_normalized, camera);
+		//renderScene_ptr->RayMarchTo(rayMarchInfo.hitPoint + fakeLightDir_normalized, fakeLightDir_normalized, camera);
 
 	float diffuseIntensity = CXMath::Clamp01(fakeLightDir_normalized.Dot(normal));
 
@@ -96,20 +100,23 @@ CXColor CXReflectiveMaterial::OnPixel(const unsigned int& x, const unsigned int&
 
 	Vec3 lastHitPoint(rayMarchInfo.hitPoint);
 
-	//will be black at first :D
 	CXColor finalColor(0, 0, 0);
 
 	//loop in amount of how much we can reflect
 	for (unsigned int i = 0; i < maxReflectCount; i++)
 	{
 		//we start reflecting
-		CXRayMarchInfo reflectOnRayMarchInfo = renderScene_ptr->RayMarchTo(lastHitPoint, reflectVec, camera);
+		CXRayMarchInfo reflectOnRayMarchInfo = renderScene_ptr->RayMarchFromHitPoint(lastHitPoint, reflectVec, camera);
 
 		if (!reflectOnRayMarchInfo.isHit)
 			break;
 
 		//if we got a Hit!
-		finalColor += CXColor::FromGreyScale(.2f);
+		//finalColor += CXColor::FromGreyScale(.2f);
+		
+		//TODO: X AND Y HERE IS NOT CORRECT!!! (because of reflections on different directions)
+		finalColor += reflectOnRayMarchInfo.rendObject_sharePtr->GetMaterial()->
+			OnPixel(x, y, width, height, renderScene_ptr, reflectOnRayMarchInfo, camera);
 
 		lastHitPoint = reflectOnRayMarchInfo.hitPoint;
 

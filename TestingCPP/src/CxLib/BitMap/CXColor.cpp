@@ -2,7 +2,8 @@
 
 // -------------------------- CXCOLOR -------------------------- //
 
-CXColor::CXColor() { SetColor(0, 0, 0); }
+CXColor::CXColor() :
+	r(.0f), g(.0f), b(.0f) {}
 
 CXColor::CXColor(float _r, float _g, float _b) { SetColor(_r, _g, _b); }
 
@@ -41,6 +42,8 @@ CXColor CXColor::FromGreyScale(float greyscale)
 	return CXColor(greyscale, greyscale, greyscale);
 }
 
+
+
 CXColor CXColor::operator+(const CXColor& color) const
 {
 	return CXColor(r + color.r, g + color.g, b + color.b);
@@ -63,26 +66,19 @@ void CXColor::operator*=(const float& grayScale)
 	SetColor(r * grayScale, g * grayScale, b * grayScale);
 }
 
-// -------------------------- UCXCOLOR -------------------------- //
 
-//UCXColor::UCXColor()
-//{
-//	SetColor(0, 0, 0);
-//}
-//
-//UCXColor::UCXColor(unsigned char _r, unsigned char _g, unsigned char _b)
-//{
-//	SetColor(_r, _g, _b);
-//}
-//
-//UCXColor::~UCXColor() {}
-//
-//void UCXColor::SetColor(unsigned char _r, unsigned char _g, unsigned char _b)
-//{
-//	r = _r; g = _g; b = _b;
-//}
-//
-//void UCXColor::SetColor(const UCXColor& other)
-//{
-//	SetColor(other.r, other.g, other.b);
-//}
+
+CXColor CXColor::MakeBlue(const float& b)
+{
+	return CXColor(0, 0, b);
+}
+
+CXColor CXColor::MakeRed(const float& r)
+{
+	return CXColor(r, 0, 0);
+}
+
+CXColor CXColor::MakeGreen(const float& g)
+{
+	return CXColor(0, g, 0);
+}

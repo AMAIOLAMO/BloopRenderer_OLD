@@ -3,9 +3,9 @@
 #include <vector>
 #include <memory>
 
+#include "CXCamera.h"
 #include "CXRayMarchInfo.h"
 #include "RenderObjects/CXRenderObject.h"
-#include "CXCamera.h"
 
 /// <summary>
 /// A renderable scene to pass into the Ray march renderer
@@ -35,6 +35,8 @@ public:
 	/// adds a new renderable object to the scene
 	/// </summary>
 	CXRenderScene& Add(const std::shared_ptr<CXRenderObject>& rendObject_sharePtr);
+
+	CXRayMarchInfo RayMarchFromHitPoint(const Vec3& rayOrigin, const Vec3& rayDirection, const CXCamera& cam) const;
 
 	CXRayMarchInfo RayMarchTo(const Vec3& rayOrigin, const Vec3& rayDirection,
 		unsigned int maxMarchIteration, float minSurfaceDistance, float farViewDistance) const;
