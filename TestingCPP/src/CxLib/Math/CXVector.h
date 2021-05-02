@@ -7,7 +7,13 @@
 struct Vec3
 {
 public:
-	float x, y, z;
+	union
+	{
+		struct
+		{
+			float x, y, z;
+		};
+	};
 
 	enum class DV
 	{
@@ -132,7 +138,7 @@ public:
 	/// <summary>
 	/// Copies the new vector and set it to a specified length
 	/// </summary>
-	static Vec3 GetLenVect(const Vec3& a, float len);
+	static Vec3 GetLenVec(const Vec3& a, float len);
 
 	/// <summary>
 	/// Copies the target vector and normalize the copied vector

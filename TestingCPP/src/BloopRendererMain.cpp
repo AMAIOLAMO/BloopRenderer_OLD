@@ -36,8 +36,8 @@ int main()
 
 void DoRenderSimpleScene(Console& console)
 {
-	CXRenderScene* renderScene_ptr = new CXRenderScene;
-	CXCamera camera(Vec3(0, 1, -5), FAR_VIEW_DISTANCE);
+	auto renderScene_ptr = new CXRenderScene;
+	const CXCamera camera(Vec3(0, 1, -5), FAR_VIEW_DISTANCE);
 
 	const CXMaterialBase* pMatPtr = new CXPhongMaterial(CXColor(1, 0, 0), CXColor(.2f, 0, .1f), CXColor(1, 1, 1), 50.0f);
 	const CXMaterialBase* plainMatPtr = new CXMaterial(CXColor(0, 1, 0));
@@ -68,13 +68,13 @@ void DoRenderSimpleScene(Console& console)
 
 	// ----------------- START GENERATING ----------------- //
 
-	console.Log("Instantiated renderer :D");
+	Console::Log("Instantiated renderer :D");
 
 	CXBitMap resultImage(160, 90);
 
-	console.Log("Instantiated bit map");
+	Console::Log("Instantiated bit map");
 
-	console.Log("Rendering to bit map :D");
+	Console::Log("Rendering to bit map :D");
 
 	// ----------------- RENDER ----------------- //
 
@@ -88,7 +88,7 @@ void DoRenderSimpleScene(Console& console)
 
 	auto timeElapsed = static_cast<std::chrono::duration<double>>(endClock - startClock);
 
-	console << "Total time of rendering: " << timeElapsed.count() << " seconds" << Console::endl;
+	console << "Total time of rendering: " << timeElapsed.count() << " seconds\n";
 
 	// ----------------- EXPORT ----------------- //
 
@@ -98,11 +98,11 @@ void DoRenderSimpleScene(Console& console)
 
 	console.ChangeConsoleColor(Console::GREEN);
 
-	console.Log("-----------------------------------------------");
+	Console::Log("-----------------------------------------------");
 
-	console.Log("Rendered Result");
+	Console::Log("Rendered Result");
 
-	console << "Render size: " << resultImage.GetWidth() << " x " << resultImage.GetHeight() << Console::endl;
+	console << "Render size: " << resultImage.GetWidth() << " x " << resultImage.GetHeight() << '\n';
 
-	console.Log("Finished rendering from the renderer :D");
+	Console::Log("Finished rendering from the renderer :D");
 }

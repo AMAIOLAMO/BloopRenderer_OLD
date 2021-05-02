@@ -167,7 +167,7 @@ bool Vec3::operator==(const Vec3& other) const
 }
 
 
-Vec3 Vec3::operator-() const
+Vec3 Vec3::operator- () const
 {
 	return Vec3(-x, -y, -z);
 }
@@ -198,15 +198,8 @@ Vec3 Vec3::Cross(const Vec3& a, const Vec3& b)
 	return a.Cross(b);
 }
 
-Vec3 Vec3::GetLenVect(const Vec3& a, float len)
+Vec3 Vec3::GetLenVec(const Vec3& a, float len)
 {
-	float vecLen = a.GetLength();
-
-	//if already same len then we don't calculate
-	if (vecLen == len)
-		return a;
-	//else is different len
-
 	return GetNormalized(a) * len;
 }
 

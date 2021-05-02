@@ -8,7 +8,7 @@ bool Console::ChangeConsoleTitle(const std::wstring& titleName)
 	return SetConsoleTitle(titleName.c_str());
 }
 
-bool Console::ChangeConsoleColor(int colorCode)
+bool Console::ChangeConsoleColor(const unsigned short colorCode) const
 {
 	return SetConsoleTextAttribute(_hndConsole, colorCode);
 }
