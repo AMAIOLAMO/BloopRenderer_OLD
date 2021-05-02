@@ -1,5 +1,10 @@
 #pragma once
 #include <math.h>
+#include <vector>
+#include <future>
+#include <mutex>
+#include <thread>
+#include <functional>
 
 #include "CXCamera.h"
 #include "CXRenderScene.h"
@@ -15,8 +20,12 @@ class CXRMRenderer
 private:
 	CXCamera m_Camera;
 	const CXRenderScene* m_RenderScene_ptr;
+	std::vector<std::future<void>> m_RenderFutures;
 
 private:
+	void RenderPixel(CXBitMap* targetBitmap, int x, int y) const;
+	void RenderBitmapBlock(CXBitMap* targetBitmap_Ptr, int startX, int startY, int blockWidth, int blockHeight) const;
+
 	/// <summary>
 	/// Marching from one direction
 	/// </summary>
@@ -47,10 +56,10 @@ public:
 	/// <summary>
 	/// Renders the scene to the target bitmap (this function only modifies the input)
 	/// </summary>
-	void RenderToBitmap(CXBitMap& targetBitmap) const;
+	void RenderToBitmap(CXBitMap& targetBitmap);
 
 	/// <summary>
 	/// Renders the scene to a new bitmap (THIS IS HEAP ALLOCATED, PLS DELETE IT YOURSELF)
 	/// </summary>
-	CXBitMap* RenderToBitmap(int width, int height) const;
+	CXBitMap* RenderToBitmap(int width, int height);
 };

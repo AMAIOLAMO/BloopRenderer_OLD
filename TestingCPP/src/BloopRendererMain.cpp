@@ -70,7 +70,7 @@ void DoRenderSimpleScene(Console& console)
 
 	console.Log("Instantiated renderer :D");
 
-	CXBitMap resultImage(1600, 900);
+	CXBitMap resultImage(160, 90);
 
 	console.Log("Instantiated bit map");
 
