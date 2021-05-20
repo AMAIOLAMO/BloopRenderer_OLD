@@ -46,7 +46,7 @@ void DoRenderSimpleScene(Console& console)
 
 	const CXMaterialBase* boxMat = new CXDiffuseMaterial(CXColor(1, 0, 0));
 
-	const CXMaterialBase* reflectMat = new CXReflectiveMaterial(3);
+	const CXMaterialBase* reflectMat = new CXReflectiveMaterial(1);
 
 	auto redSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(0, 1, 5), 1.0f), pMatPtr);
 	auto greenSphere = CXRenderObject(std::make_shared<CXSphereRenderBody>(Vec3(1, 1, 5), 1.0f), plainMatPtr);
