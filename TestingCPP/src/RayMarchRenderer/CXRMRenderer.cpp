@@ -71,13 +71,13 @@ void CXRMRenderer::RenderToBitmap( CXBitMap& targetBitmap )
 	{
 		for ( size_t rBlockX = 0; rBlockX < blockWidthCount; rBlockX++ )
 		{
-			/*m_RenderFutures.push_back(
-				std::async(std::launch::async, &CXRMRenderer::RenderBitmapBlock, this, &targetBitmap,
-					rBlockX * RenderBlockAvrgSide, rBlockY * RenderBlockAvrgSide, RenderBlockAvrgSide, RenderBlockAvrgSide)
-			);*/
+			m_RenderFutures.push_back(
+				std::async( std::launch::async, &CXRMRenderer::RenderBitmapBlock, this, &targetBitmap,
+					rBlockX * RenderBlockAvrgSide, rBlockY * RenderBlockAvrgSide, RenderBlockAvrgSide, RenderBlockAvrgSide )
+			);
 
-			RenderBitmapBlock( &targetBitmap,
-				rBlockX * RenderBlockAvrgSide, rBlockY * RenderBlockAvrgSide, RenderBlockAvrgSide, RenderBlockAvrgSide );
+			/*RenderBitmapBlock( &targetBitmap,
+				rBlockX * RenderBlockAvrgSide, rBlockY * RenderBlockAvrgSide, RenderBlockAvrgSide, RenderBlockAvrgSide );*/
 		}
 	}
 
@@ -99,13 +99,13 @@ void CXRMRenderer::RenderToBitmap( CXBitMap& targetBitmap )
 
 CXColor CXRMRenderer::OnPixelLoop( const int& x, const int& y, const int& width, const int& height ) const
 {
-	float resDiv = CXMath::Max( static_cast<float>( width ), static_cast<float>( height ) );
+	float resDiv = CXMath::Max( (float) width, (float) height );
 
 	float uv_x = (float) x / resDiv,
 		uv_y = (float) y / resDiv;
 
-	float centerX = ( static_cast<float>( width ) / resDiv ) / 2.0f,
-		centerY = ( static_cast<float>( height ) / resDiv ) / 2.0f;
+	float centerX = ( (float) width / resDiv ) / 2.0f,
+		centerY = ( (float) height / resDiv ) / 2.0f;
 
 	float camUV_x = uv_x - centerX, camUV_y = uv_y - centerY;
 
@@ -115,7 +115,6 @@ CXColor CXRMRenderer::OnPixelLoop( const int& x, const int& y, const int& width,
 	CXColor finalColor( 0, 0, 0 );
 
 	CXRayMarchInfo rayMarchFromCamInfo = RayMarchFromCam( rayDirFromCam );
-
 
 	if ( rayMarchFromCamInfo.isHit )
 	{
