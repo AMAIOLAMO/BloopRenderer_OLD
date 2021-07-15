@@ -57,7 +57,7 @@ void CXRMRenderer::RenderToBitmap( CXBitMap& targetBitmap )
 
 	size_t pixPerRendBlock = totalPixelCount / MAX_THREAD_COUNT;
 
-	size_t RenderBlockAvrgSide = static_cast<unsigned int>( sqrtf( static_cast<float>( pixPerRendBlock ) ) );
+	size_t RenderBlockAvrgSide = (size_t)( sqrtf( static_cast<float>( pixPerRendBlock ) ) );
 
 	size_t blockWidthCount = width / RenderBlockAvrgSide,
 		blockHeightCount = height / RenderBlockAvrgSide;
@@ -71,30 +71,15 @@ void CXRMRenderer::RenderToBitmap( CXBitMap& targetBitmap )
 	{
 		for ( size_t rBlockX = 0; rBlockX < blockWidthCount; rBlockX++ )
 		{
-			m_RenderFutures.push_back(
+			/*m_RenderFutures.push_back(
 				std::async( std::launch::async, &CXRMRenderer::RenderBitmapBlock, this, &targetBitmap,
 					rBlockX * RenderBlockAvrgSide, rBlockY * RenderBlockAvrgSide, RenderBlockAvrgSide, RenderBlockAvrgSide )
-			);
+			);*/
 
-			/*RenderBitmapBlock( &targetBitmap,
-				rBlockX * RenderBlockAvrgSide, rBlockY * RenderBlockAvrgSide, RenderBlockAvrgSide, RenderBlockAvrgSide );*/
+			RenderBitmapBlock( &targetBitmap,
+				rBlockX * RenderBlockAvrgSide, rBlockY * RenderBlockAvrgSide, RenderBlockAvrgSide, RenderBlockAvrgSide );
 		}
 	}
-
-	//loop in the whole img (this as the UV of the camera)
-	//for (int y = 0; y < height; y++)
-	//{
-	//	for (int x = 0; x < width; x++)
-	//	{
-	//		CXColor finalPixel = OnPixelLoop(x, y, width, height);
-
-	//		targetBitmap.SetColor(finalPixel, x, y);
-
-	//		/*m_RenderFutures.push_back(
-	//			std::async(std::launch::async, &CXRMRenderer::RenderPixel, this, &targetBitmap, x, y)
-	//		);*/
-	//	}
-	//}
 }
 
 CXColor CXRMRenderer::OnPixelLoop( const int& x, const int& y, const int& width, const int& height ) const

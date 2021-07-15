@@ -114,7 +114,6 @@ CXColor CXReflectiveMaterial::OnPixel(const unsigned int& x, const unsigned int&
 		//if we got a Hit!
 		//finalColor += CXColor::FromGreyScale(.2f);
 		
-		//TODO: X AND Y HERE IS NOT CORRECT!!! (because of reflections on different directions)
 		finalColor += reflectOnRayMarchInfo.rendObject_sharePtr->GetMaterial()->
 			OnPixel(x, y, width, height, renderScene_ptr, reflectOnRayMarchInfo, camera);
 
